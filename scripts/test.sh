@@ -1,1 +1,1 @@
-./build/PrettyLazy0.out
+./build/plazy

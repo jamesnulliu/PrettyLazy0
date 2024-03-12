@@ -12,6 +12,13 @@ Check [Env Guide.md](./docs/Env_Guide.md) for detailed environment setup.
 
 ## Quick Start
 
+Clone this repository with following command:
+
+```bash
+git clone git@github.com:jamesnulliu/PrettyLazy0.git
+cd PrettyLazy0
+```
+
 To build an executable of PrettyLazy0:
 
 ```bash
@@ -22,4 +29,10 @@ To run test case:
 
 ```bash
 bash scrpts/test.sh
+```
+
+To add the executable (namely `plazy`) to user PATH variable:
+
+```bash
+export PATH="$PATH:$(pwd)/build/bin"
 ```

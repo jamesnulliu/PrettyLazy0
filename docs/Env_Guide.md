@@ -18,19 +18,40 @@ Check gcc version:
 gcc -v
 ```
 
-If you are using ubuntu 23, the output version should be 13.
+If you are using ubuntu 23, the output would imply that the installed gcc version is "13.x.x". Then everything is okay.
 
-However, if you are using releases lower than 23, you should install gcc-13 and g++-13 mannualy.
+---
+
+However, if you are using ubuntu releases lower than 23, you will have to install gcc-13 and g++-13 mannualy.
+
+Suppose that your currently installed gcc and g++ version is 11.
 
 ```bash
+# Install gcc-13 and g++-13
 sudo add-apt-repository ppa:ubuntu-toolchain-r/test
 sudo apt-get update
 sudo apt-get install gcc-13 g++-13
+
+# Register gcc-11 and g++-11 as one group of alternatives
+sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-11 110 --slave /usr/bin/g++ g++ /usr/bin/g++-11
+
+# Register gcc-13 and g++-13 as another group of alternatives
 sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-13 130 --slave /usr/bin/g++ g++ /usr/bin/g++-13
+
+# Pop a prompt to select the default version of gcc, and g++ would be updated automatically
+sudo update-alternatives --config gcc
 ```
+
+For general purpose of C++ programing, it is suggested that gcc-11 and g++11 is installed on your system. Some softwares may have a strict rule for gcc version not larger than 12.
 
 ## 2. Install CMake
 
 ```bash
 sudo apt-get install cmake
+```
+
+## 3. \[Optional\] Install VSCode
+
+```bash
+sudo snap install code --classic
 ```

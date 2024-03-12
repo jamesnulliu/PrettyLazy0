@@ -14,8 +14,11 @@ include_directories(include)
 # Source files
 file(GLOB_RECURSE SOURCES src/*.cpp)
 
+# Set output directory
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+
 # Add executable with the project name
-add_executable(${PROJECT_NAME}.out ${SOURCES})
+add_executable(plazy ${SOURCES})
 
 # Set different compile options for Release and Debug modes
 set(CMAKE_CXX_FLAGS_RELEASE "-O3")
