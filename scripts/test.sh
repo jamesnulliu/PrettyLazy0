@@ -1,1 +1,1 @@
-./build/plazy
+./build/bin/plazy
