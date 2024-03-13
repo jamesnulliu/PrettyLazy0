@@ -5,25 +5,10 @@
 
 namespace plazy
 {
-    
-consteval bool is_keyword(const char* str)
+
+constexpr bool is_keyword(std::string_view str)
 {
-    for (const auto& keyword : KEYWORDS) {
-        if (str == keyword) {
-            return true;
-        }
-    }
-    return false;
+    return std::ranges::find(KEYWORDS, str) != std::end(KEYWORDS);
 }
 
-inline bool is_keyword(const std::string& str)
-{
-    for (const auto& keyword : KEYWORDS) {
-        if (str == keyword) {
-            return true;
-        }
-    }
-    return false;
-}
-
-} // namespace plazy
+}  // namespace plazy

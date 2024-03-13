@@ -20,7 +20,8 @@ struct Token
     std::string value;
 };
 
-inline constexpr auto KEYWORDS = std::array{"const", "var", "procedure", "begin", "end",   "if",  "then",
-                                            "while", "do",  "call",      "odd",   "write", "read"};
+constexpr std::string_view KEYWORDS[] = {"const", "var",   "procedure", "begin", "end",
+                                         "if",    "then",  "while",     "do",    "call",
+                                         "odd",   "write", "read"};
 
 }  // namespace plazy

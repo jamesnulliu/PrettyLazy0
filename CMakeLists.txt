@@ -14,8 +14,9 @@ include_directories(include)
 # Source files
 file(GLOB_RECURSE SOURCES src/*.cpp)
 
-# Set output directory
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+## [Bug] vscode cannot find the executable if the output dir is changed
+## Set output directory
+# set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 # Add executable with the project name
 add_executable(plazy ${SOURCES})

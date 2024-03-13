@@ -38,4 +38,4 @@ ConstructorInitializerIndentWidth:              4
 
 AlwaysBreakTemplateDeclarations: Yes
 
-ColumnLimit: 120
+ColumnLimit: 100
