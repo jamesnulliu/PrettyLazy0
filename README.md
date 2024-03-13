@@ -8,7 +8,7 @@ A PL/0 Compiler Implemented with C++
 - Other Softwares: cmake>=3.21
 - IDE: vscode (optional, recommended)
 
-Check [Env Guide.md](./docs/Env_Guide.md) for detailed environment setup.
+Check [Env Setup Guide](./docs/Env_Setup_Guide.md) for detailed environment setup.
 
 ## Quick Start
 
@@ -34,5 +34,5 @@ bash scrpts/test.sh
 To add the executable (namely `plazy`) to user PATH variable:
 
 ```bash
-export PATH="$PATH:$(pwd)/build/bin"
+export PATH="$PATH:$(pwd)/build"
 ```

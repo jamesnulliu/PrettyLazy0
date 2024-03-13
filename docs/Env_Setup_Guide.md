@@ -1,8 +1,8 @@
-# Env Guide
+# Env Setup Guide
 
 Make sure you are using Ubuntu x64 22/23.
 
-Other operating system is not support yet.
+Other operating systems are not support yet.
 
 ## 1. Install gcc and g++
 
@@ -55,3 +55,9 @@ sudo apt-get install cmake
 ```bash
 sudo snap install code --classic
 ```
+
+Install C/C++ Extension Pack provided by Microsoft. This should include C/C++ extension and CMake Tools extionsion.
+
+You should be able to build, run and debug the project with the buttons on the status bar on the left-bottom of the window.
+
+<img src="imgs/cmake.png"></img>
