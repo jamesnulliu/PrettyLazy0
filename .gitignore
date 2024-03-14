@@ -31,5 +31,8 @@
 *.out
 *.app
 
-# CMake Build directory
+# CMake Build Directory
 build
+
+# Output Directory
+bin

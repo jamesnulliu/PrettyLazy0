@@ -2,7 +2,7 @@
 
 Make sure you are using Ubuntu x64 22/23.
 
-Other operating systems are not support yet.
+Other operating systems are not supported yet.
 
 ## 1. Install gcc and g++
 
@@ -24,7 +24,20 @@ If you are using ubuntu 23, the output would imply that the installed gcc versio
 
 However, if you are using ubuntu releases lower than 23, you will have to install gcc-13 and g++-13 mannualy.
 
-Suppose that your currently installed gcc and g++ version is 11.
+First check which version of gcc and g++ is installed on your system:
+
+```bash
+gcc -v
+```
+
+**Suppose** that your currently installed gcc and g++ version is 11, you should find gcc-11 and g++-11 under "/usr/bin/":
+
+```bash
+ls /usr/bin
+# All files under "/usr/bin" would be listd.
+```
+
+Now, install gcc-13 and g++-13, while keeping older version existed:
 
 ```bash
 # Install gcc-13 and g++-13
@@ -42,7 +55,7 @@ sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-13 130 --slave 
 sudo update-alternatives --config gcc
 ```
 
-For general purpose of C++ programing, it is suggested that gcc-11 and g++11 is installed on your system. Some softwares may have a strict rule for gcc version not larger than 12.
+For general purpose of C++ programing, it is suggested that gcc-11 and g++-11 is installed on your system. Some softwares may have a strict rule for gcc version not larger than 12.
 
 ## 2. Install CMake
 

@@ -16,7 +16,12 @@ Clone this repository with following command:
 
 ```bash
 git clone git@github.com:jamesnulliu/PrettyLazy0.git
-cd PrettyLazy0
+```
+
+Change directory to project root:
+
+```bash
+cd plazy
 ```
 
 To build an executable of PrettyLazy0:
@@ -34,5 +39,5 @@ bash scrpts/test.sh
 To add the executable (namely `plazy`) to user PATH variable:
 
 ```bash
-export PATH="$PATH:$(pwd)/build"
+export PATH="$PATH:$(pwd)/bin"
 ```
