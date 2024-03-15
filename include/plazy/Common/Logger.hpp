@@ -26,6 +26,8 @@ constexpr std::string_view _sourceFileName(std::string_view s)
 
 #define _PLAZY_LOG_FMT "[{}:{}|{}] >>> {}\n"
 
+#define PLAZY_PRINT(...) std::cout << std::format(__VA_ARGS__)
+
 #define PLAZY_TRACE(...)                                                                           \
     std::cout << std::format(_PLAZY_LOG_FMT, plazy::_sourceFileName(__FILE__), __LINE__,           \
                              __FUNCTION__, std::format(__VA_ARGS__))

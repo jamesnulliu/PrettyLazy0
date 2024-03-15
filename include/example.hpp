@@ -1,1 +1,2 @@
 void loggerExample();
+void splitExample();

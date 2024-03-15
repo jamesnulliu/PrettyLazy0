@@ -24,8 +24,8 @@ void loggerExample()
     PLAZY_INFO("The diameter of earth is {:.2f} km", 12742.0);
     // `:.2e` formats the number in scientific notation with two decimal places
     PLAZY_WARNING("The speed of light is {:.2e} m/s", 299792458.0);
-    // `:<10` aligns the string to the left with a width of 10
-    PLAZY_ERROR("epoch: {:>10}; acc: {:>10.2f}%, loss: {:>10.2f}", 114514, 0.99, 0.01);
+    // `:>10` aligns the string to the right with a width of 6
+    PLAZY_ERROR("epoch: {:>6}; acc: {:>6.2f}%, loss: {:>6.2f}", 114514, 0.99, 0.01);
 
     PLAZY_CRITICAL("********** Logger Example End **********");
 }
