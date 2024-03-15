@@ -1,6 +1,7 @@
 # How to Contribute as a Colaborator
+🌍: \[[English](./How_to_Contribute_as_a_Colaborator.md)\]\[[中文](./How_to_Contribute_as_a_Colaborator_zh.md)\]
 
-## Clone the Repository
+## 1. Clone the Repository
 
 ```bash
 git clonegit@github.com:jamesnulliu/PrettyLazy0.git
@@ -8,19 +9,28 @@ git clonegit@github.com:jamesnulliu/PrettyLazy0.git
 cd PrettyLazy0
 ```
 
-## Create a New Branch
+## 2. Create a New Branch
 
-On github branch page, check **if there is an existing branch that is suitable for your contribution**. 
+On github branch page, **check if there has been an existing branch that is suitable for your contribution**. 
 
 Let's suppose you want to add support for regular expression. You should first check if there is a branch named `feature/regex-support` on the [branch page](https://github.com/jamesnulliu/PrettyLazy0/branches).
 
-## If There is No Suitable Branch
+### 2.1. If There is a Suitable Branch
 
-> If there is a suitable branch, please jump to [If There is Suitable Branch](#if-there-is-suitable-branch).
+If there there has already been a branch called `feature/regex-support`, you can directly checkout to this branch and pull the newest changes from remote repo.
+
+```bash
+# Note that you should be in directory "PrettyLazy0" now
+# Pull the newest changes from remote repo
+git pull
+# Make sure you are in branch "feature/regex-support"
+git checkout feature/regex-support
+```
+### 2.2. If There is No Suitable Branch
 
 If there is no suitable branch for your contribution, you can create a new branch from `dev` following the [Branch Nameing Convention](./Branch_Naming_Convention.md).
 
-This can be done on github, **but we recommend you to do it on your local machine according to following steps**.
+This could be done on github, **but we recommend you to do it on your local machine according to following steps**.
 
 ```bash
 # Note that you should be in directory "PrettyLazy0" now
@@ -36,42 +46,28 @@ git push origin feature/regex-support:feature/regex-support
 
 Now back to the [branch page](https://github.com/jamesnulliu/PrettyLazy0/branches), you should see a new branch called `feature/regex-support`.
 
-## If There is Suitable Branch
+## 3. Make Your Contribution
 
-If there there has already been a branch called `feature/regex-support`, you can directly checkout to this branch and pull the newest modifications from remote repo.
-
-```bash
-# Note that you should be in directory "PrettyLazy0" now
-# Pull the newest modifications from remote repo
-git pull
-# Make sure you are in branch "feature/regex-support"
-git checkout feature/regex-support
-```
-
-## Make Your Contribution
-
-Now you can make your contribution to the project. You can add, modify, or delete files as needed. Once you've made your changes, you can commit them to your local branch.
+Now you can make your contribution to the project. You can add, modify, or delete files as needed. Once you've made your changes, you should commit them to your local branch.
 
 **Note**: All changes should be done on branch `feature/regex-support`. Do not make any changes to branch `dev` or `main` directly.
 
-## Merge Your Contribution to `dev`
-
-Commit the changes to branch `feature/regex-support`:
-
 ```bash
-# Make sure you are on branch "feature/regex-support"
-git checkout feature/regex-support
-# Pull newest changes from remote repo
-git pull origin feature/regex-support
 # Add all changes to the staging area
 git add .
 # Commit the changes with a descriptive message
 git commit  # or: git commit -m "<message>"
+# Pull newest changes from remote repo
+git pull origin feature/regex-support
 # Push the changes on branch "feature/regex-support" to remote repo
 git push origin feature/regex-support
 ```
 
-Then you can merge your changes to branch `dev`:
+**Note**: If conflicts happen after `pull` command, solve the conflicts accroding to [5. Solve the Conflicts](#5-solve-the-conflicts). `push` to remote repository after the conficts are solved.
+
+## 4. Merge Your Changes to `dev`
+
+After commiting changes in branch `feature/regex-support`, you can merge your changes to branch `dev`:
 
 ```bash
 # Checkout to branch "dev"
@@ -80,21 +76,19 @@ git checkout dev
 git pull origin dev
 # Merge branch "feature/regex-support" to branch "dev"
 git merge feature/regex-support
+# Push to remote branch "dev"
+git push origin dev
 ```
 
-Git will notice you if there are conflicts.
+**Note**: If conflicts happen after `pull` command, solve the conflicts accroding to [Solve the Conflicts](#5-solve-the-conflicts). `push` to remote repository after the conficts are solved.
 
-## Solve the Conflicts
+## 5. Solve the Conflicts
 
-If there is no conflict, please jump to [Push to `dev`](#push-to-dev).
-
-If there are conflicts, you should solve them manually. 
+If there are conflicts after `pull` or `merge`, you should solve them manually. 
 
 First find out which files have conflicts:
 
 ```bash
-# Make sure you are on branch "dev"
-git checkout dev
 # Check the status of the repository
 git status
 ```
@@ -110,14 +104,7 @@ git add .
 git commit  # or: git commit -m "<message>"
 ```
 
-## Push to `dev`
-
-After solving the conflicts, you can push the changes to the remote repository.
-
-```bash
-git checkout dev
-git push origin dev
-```
+## \[Optional\] 6. Delete a Branch
 
 If the branch `feature/regex-support` is no longer needed, you can delete it:
 
@@ -129,7 +116,7 @@ git branch -d feature/regex-support
 git push origin --delete feature/regex-support
 ```
 
-## Create a Pull Request
+## 7. Create a Pull Request
 
 After pushing your changes to the `dev` branch on the remote repository, the next step is to create a Pull Request (PR) to propose your changes for review and integration into the main codebase.
 
@@ -148,7 +135,7 @@ After pushing your changes to the `dev` branch on the remote repository, the nex
     - Provide a title and a detailed description for your PR. 
     - Click on `Create pull request` again to submit your PR.
 
-6. **Respond to Feedback**: Once your PR is submitted, other team members can review your changes, leave comments, and request additional modifications if necessary. Be prepared to respond to feedback and make further commits to your feature branch if required. These updates will automatically be included in your open PR.
+6. **Respond to Feedback**: Once your PR is submitted, other team members can review your changes, leave comments, and request additional modifications if necessary. Be prepared to respond to feedback and make further commits to your feature branch if required.
 
 7. **Final Merge**: After your PR has been reviewed and approved by the necessary members of your team, someone with merge permissions will merge your changes into the `dev` branch. Once the merge is complete, your changes will be part of the `dev` branch, and your PR will be closed.
 
