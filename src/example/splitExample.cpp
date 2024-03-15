@@ -20,7 +20,7 @@ void splitExample()
     
     PLAZY_INFO("Original String: {}", str);
 
-    PLAZY_CRITICAL("Splitting by '.'; Note that a ' ' is kept at the end of the string");
+    PLAZY_CRITICAL("Splitting by '.'; Note that a '\\0' is kept at the end of the string");
     printSplitedString(plazy::split(str, '.'));
 
     PLAZY_CRITICAL("Splitting by '+'; Note that multiple delimiters are treated as one.");

@@ -17,10 +17,10 @@ void loggerExample()
     // Log a critical message
     PLAZY_CRITICAL("This is a critical message");
 
-    // Also, you can format the message just like using std::format
-    // `{}` is the placeholder for the arguments, 42
+    // Also, you can format the message just like using `std::format`
+    // `{}` is the placeholder for the arguments, namely "answer" and 42
     PLAZY_TRACE("The {} is {}", "answer", 42);
-    // `:.2f` formats the number as a floating-point number with two decimal places
+    // `:.2f` formats the number as a float with two decimal places
     PLAZY_INFO("The diameter of earth is {:.2f} km", 12742.0);
     // `:.2e` formats the number in scientific notation with two decimal places
     PLAZY_WARNING("The speed of light is {:.2e} m/s", 299792458.0);
