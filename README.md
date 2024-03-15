@@ -42,4 +42,4 @@ export PATH="$PATH:$(pwd)/bin"
 
 ## Contribute
 
-Contribution is welcomed. Please check [How to Contribute as a Colaborator](./docs/How_to_Contribute_as_a_Colaborator.md) for contribution rules.
+Contribution is welcomed. Please check [How to Develop as a Colaborator](./docs/How_to_Develop_as_a_Colaborator.md) for contribution rules.
