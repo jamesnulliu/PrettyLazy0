@@ -2,6 +2,7 @@
     "C_Cpp.default.compilerPath": "/usr/bin/g++",
     "files.associations": {
         "concepts": "cpp",
-        "string_view": "cpp"
+        "string_view": "cpp",
+        "optional": "cpp"
     },
 }

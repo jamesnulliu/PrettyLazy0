@@ -1,20 +1,20 @@
 #include "plazy.hpp"
-#include <format>
-#include <iostream>
+#include "plazy/Common/ArgParser.hpp"
+#include "plazy/Common/Logger.hpp"
 
-int main()
+#include "example.hpp"
+
+int main(int argc, char* argv[])
 {
-    std::cout << "Hello, World!\n";
-    std::cout << std::format("'SHU' {} a PL/0 keyword\n",
-                             plazy::is_keyword("SHU") ? "is" : "is not");
-    std::string str = "const";
-    std::cout << std::format("'{}' {} a PL/0 keyword\n", str,
-                             plazy::is_keyword(str) ? "is" : "is not");
+    loggerExample();
 
-    str = "!!Hello, I'm Tom...  I love coding!";
-    auto splited = plazy::split(str, ' ', ',', '.', '!');
-    for (auto& s : splited) {
-        std::cout << s << std::endl;
-    }
+    plazy::ArgParser argParser;
+    argParser.addOption("f", "The source file to be compiled", "string");
+    argParser.addOption("o", "The output file", "string", "a.out");
+    argParser.parse(argc, argv);
+
+    PLAZY_TRACE("Source file: {}", *argParser.get<std::string>("f"));
+    PLAZY_TRACE("Output file: {}", *argParser.get<std::string>("o"));
+
     return 0;
 }
