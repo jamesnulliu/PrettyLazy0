@@ -13,13 +13,13 @@ cd PrettyLazy0
 
 ## 2. Create/Switch to a Branch
 
-On github branch page, **check if there has been an existing branch that is suitable for your contribution**. 
+On GitHub [branches page](GitHub), **check if there has been an existing branch that is suitable for your contribution**. 
 
-Let's suppose you want to add support for regular expression. You should first check if there is a branch named `feature/regex-support` on the [branch page](https://github.com/jamesnulliu/PrettyLazy0/branches).
+Let's suppose you want to add support for regular expression. You should first check if there is a branch named `feature/regex-support` on [branches page](https://github.com/jamesnulliu/PrettyLazy0/branches).
 
 ### 2.1. If There is a Suitable Branch
 
-If there there has already been a branch called `feature/regex-support`, you can directly switch to this branch and pull the newest changes from remote repo.
+If there there has already been a branch called `feature/regex-support`, you can directly go to your local machine and switch to this branch.
 
 ```bash
 # Switch to branch "feature/regex-support"
@@ -27,30 +27,41 @@ git checkout feature/regex-support
 # Pull the new changes from remote repository
 git pull
 ```
+
+☝**Note**: `git pull` only pulls the changes to the branch you are currently on. So switch to the branch before pulling.
+
 ### 2.2. If There is No Suitable Branch
 
-If there is no suitable branch for your contribution, you can create a new branch from `dev` following the [Branch Nameing Convention](./Branch_Naming_Convention.md).
+If there is no suitable branch for your contribution, you can create a new branch from `dev` following the [Branch Naming Convention](./Branch_Naming_Convention.md).
 
+Simply put, branch names should follow these naming scheme:
+
+- For a **feature**: `feature/<feature-name>`
+- For a **bugfix**: `bugfix/<issue-or-bug-number>`
+- For a **hotfix**: `hotfix/<issue-or-bug-number>`
+- For a **release**: `release/<version-number>`
+- For a **documentation**: `doc/<documenation-name>`
 
 ```bash
 # Make sure you are on branch "dev"
 git checkout dev
+# Pull the new changes from remote repository
+git pull
 # Create a new branch from "dev" called "feature/regex-support"
 git checkout -b feature/regex-support
-# Push the new branch to remote repo
+# Push the new branch to remote repo, namely create a remote branch
 git push origin feature/regex-support:feature/regex-support
 ```
 
-Back to the [branch page](https://github.com/jamesnulliu/PrettyLazy0/branches), you should see a new branch called `feature/regex-support`.
+Back to the [branches page](https://github.com/jamesnulliu/PrettyLazy0/branches), you should see a new branch called `feature/regex-support`.
 
 ## 3. Make Your Contribution
 
 Now you can make your contribution to the project. You can add, modify, or delete files as needed. Once you've made your changes, you should commit them to your local branch and push to remote.
 
-**Note**: All changes should be done on branch `feature/regex-support`. Do not make any changes to branch `dev` or `main` directly.
+☝**Note**: All changes should be done on branch `feature/regex-support`. Do not make any changes to branch `dev` or `main` directly.
 
 ```bash
-# Make sure you are on branch `feature/regex-support`
 git checkout feature/regex-support
 # Add all changes to the staging area
 git add .
@@ -62,12 +73,12 @@ git pull
 git push origin feature/regex-support
 ```
 
-**Note**: If conflicts happen after `pull` command, resolve the conflicts accroding to [Appendix: Resolve the Conflicts on Local Machine](#resolve-the-conflicts-on-local-machine). 
+☝**Note**: If Git warns you conflicts after `pull`, resolve the conflicts accroding to [Appendix: Resolve the Conflicts on Local Machine](#resolve-the-conflicts-on-local-machine). 
 
-Push to remote repository after the conficts are solved:
+After the conflicts are resolved, commit the changes and push to remote repository.
 
 ```bash
-# Remember to commit changes after resolving changes
+# Remember to commit changes after resolving conflicts 
 git push origin feature/regex-support
 ```
 
@@ -75,7 +86,9 @@ git push origin feature/regex-support
 
 After pushing changes to branch `feature/regex-support` on remote repository, you should create a **Pull Request (PR)** from `feature/regex-support` to `dev` on GitHub.
 
-Please check [Appendix: Create a Pull Request to Merge Changes from `D` to `M`](#create-a-pull-request-to-merge-changes-from-d-to-m) for details.
+☝**Note**: A PR from `feature/regex-support` to `dev` indicates that you want to **merges the changes from `feature/regex-support` to `dev`**.
+
+Please check [Appendix: Create a Pull Request to Merge Changes from `B` to `A`](#create-a-pull-request-to-merge-changes-from-b-to-a) for details.
 
 ---
 
@@ -83,7 +96,7 @@ Please check [Appendix: Create a Pull Request to Merge Changes from `D` to `M`](
 
 ## Resolve the Conflicts on Local Machine
 
-**Note**: You can only resolve the confilcts on your local machine, not on GitHub.
+☝**Note**: You can only resolve the confilcts on your local machine, not on GitHub.
 
 If there are conflicts after `pull` or `merge`, you should resolve them manually. 
 
@@ -106,17 +119,17 @@ git commit  # or: git commit -m "<message>"
 ```
 
 
-## Create a Pull Request to Merge Changes from `D` to `M`
+## Create a Pull Request to Merge Changes from `B` to `A`
 
-Suppose you have commited some changes on branch `D` and pushed to remote repository. And you now want to **create a PR to merge changes from `D` to `M`**.
+Suppose you have commited some changes on branch `B` and pushed to remote repository. And you now want to **create a PR to merge changes from `B` to `A`**.
 
 1. **Navigate to the Repository on GitHub**: Open your web browser and go to the [GitHub page](https://github.com/jamesnulliu/PrettyLazy0/) for the repository you've been working on.
 
 2. **Initiate the Pull Request**: Click on the `Pull requests` tab near the top of the repository's GitHub page. Then, click on the `New pull request` button.
 
 3. **Choose the Base and Compare Branches**: 
-    - For the **base branch**, select `M`. This is the branch you want your changes to be pulled into.
-    - For the **compare branch**, select your `D`. This is the branch that contains the changes you want to merge.
+    - For the **base branch**, select `A`. This is the branch you want your changes to be pulled into.
+    - For the **compare branch**, select your `B`. This is the branch that contains the changes you want to merge.
 
 4. **Review Your Changes**: Review the changes to ensure everything is correct and as intended.
 
@@ -130,27 +143,26 @@ Suppose you have commited some changes on branch `D` and pushed to remote reposi
 
 6. **Respond to Feedback**: Once your PR is submitted, other team members can review your changes, leave comments, and request additional modifications if necessary. Be prepared to respond to feedback and make further commits to your feature branch if required.
 
-7. **Final Merge**: After your PR has been reviewed and approved by the necessary members of your team, someone with merge permissions will merge your changes into branch `M`. Once the merge is complete, your changes will be part of branch `M`, and your PR will be closed.
+7. **Final Merge**: After your PR has been reviewed and approved by the necessary members of your team, someone with merge permissions will merge your changes into branch `A`. Once the merge is complete, your changes will be part of branch `A`, and your PR will be closed.
 
 
 ## When Conflicts Happen during PR
 
 Suppose you are creating a PR from `B` to `A`.
 
-**Note**: `B` is the branch where you develope, and you want to create a PR to merge the changes **FROM `B` to `A`**.
-
 If GitHub indicates there are conflicts between `B` and `A`,  your PR would not be merged automatically.
 
 In this case, go back to your local machine and merge `A` to `B`:
 
 ```bash
+git checkout A
 # Pull new changes from remote repository
 git pull
 # "B" is the branch where you made changes.
 # Originally, you want to create a PR to merge the changes from "B" to "A";
-# But since there are conflicts, 
-# now you should first merge "A" to "B" on your local machine.
+# But since there are conflicts, now you should first merge "A" to "B" on your local machine.
 git checkout B
+git pull
 git merge A
 ```
 
@@ -165,7 +177,7 @@ git push origin B
 
 Go back to GitHub and navigate to the PR you created. 
 
-You should now see that the conflicts have been resolved, and the merge conflict warning has disappeared. 
+You should be able to see that the conflicts have been resolved, and the merge conflict warning has disappeared. 
 
 
 <!-- ##  Delete a Branch
