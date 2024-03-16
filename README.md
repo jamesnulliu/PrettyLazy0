@@ -31,7 +31,7 @@ bash scripts/build.sh
 To run test case:
 
 ```bash
-bash scrpts/test.sh
+bash scripts/test.sh
 ```
 
 To add the executable (namely `plazy`) to user PATH variable:
