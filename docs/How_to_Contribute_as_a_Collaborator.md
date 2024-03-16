@@ -1,5 +1,5 @@
-# How to Contribute as a Colaborator
-🌍: [[English](./How_to_Contribute_as_a_Colaborator.md)][[中文](./How_to_Contribute_as_a_Colaborator_zh.md)]
+# How to Contribute as a Collaborator
+🌍: [[English](./How_to_Contribute_as_a_Collaborator.md)][[中文](./How_to_Contribute_as_a_Collaborator_zh.md)]
 
 This documentation is about a version control strategy based on [Git Flow](https://nvie.com/posts/a-successful-git-branching-model/).
 
