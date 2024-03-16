@@ -1,5 +1,5 @@
 # 分支命名规范
-🌍: \[[English](./Branch_Naming_Convention.md)\]\[[中文](./Branch_Naming_Convention_zh.md)\]
+🌍: |[English](./Branch_Naming_Convention.md)|[中文](./Branch_Naming_Convention_zh.md)|
 
 为了便于小组内交流清晰和工作编排，我们建议使用以下分支命名规范：
 
