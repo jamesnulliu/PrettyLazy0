@@ -31,7 +31,7 @@ bash scripts/build.sh
 To run test case:
 
 ```bash
-bash scrpts/test.sh
+bash scripts/test.sh
 ```
 
 To add the executable (namely `plazy`) to user PATH variable:
@@ -42,4 +42,4 @@ export PATH="$PATH:$(pwd)/bin"
 
 ## Contribute
 
-Contribution is welcomed. Please check [How to Contribute as a Colaborator](./docs/How_to_Contribute_as_a_Colaborator.md) for contribution rules.
+Contribution is welcomed. Please check [How to Contribute as a Colaborator](./docs/How_to_Contribute_as_a_Collaborator.md) for contribution rules.
