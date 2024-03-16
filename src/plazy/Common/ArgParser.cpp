@@ -7,7 +7,7 @@ void plazy::ArgParser::addOption(std::string_view name, std::string_view descrip
     m_options[name] = {description, type, defaultValue};
 }
 
-bool plazy::ArgParser::parse(int argc, char* argv[])
+bool plazy::ArgParser::parse(int argc, char* argv[]) noexcept
 {
     for (int i = 1; i < argc; ++i) {
         std::string_view arg = argv[i];

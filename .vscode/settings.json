@@ -3,6 +3,9 @@
     "files.associations": {
         "concepts": "cpp",
         "string_view": "cpp",
-        "optional": "cpp"
+        "optional": "cpp",
+        "*.tcc": "cpp",
+        "format": "cpp",
+        "istream": "cpp"
     },
 }

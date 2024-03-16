@@ -6,6 +6,11 @@
 
 int main(int argc, char* argv[])
 {
+    for(size_t i=0; i<argc; ++i)
+    {
+        PLAZY_TRACE("argv[{}]: {}", i, argv[i]);
+    }
+
     loggerExample();
     splitExample();
 

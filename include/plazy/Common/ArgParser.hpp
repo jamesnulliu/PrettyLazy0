@@ -16,7 +16,7 @@ public:
 
     void addOption(std::string_view name, std::string_view description, std::string_view type,
                    std::optional<std::string> defaultValue = std::nullopt);
-    bool parse(int argc, char* argv[]);
+    bool parse(int argc, char* argv[]) noexcept;
 
     template <typename T>
     std::optional<T> get(std::string_view name) const

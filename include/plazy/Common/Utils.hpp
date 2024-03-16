@@ -13,37 +13,63 @@ constexpr bool is_keyword(std::string_view str)
     return std::ranges::find(KEYWORDS, str) != std::end(KEYWORDS);
 }
 
-constexpr bool _isDelimiter(char c)
+constexpr std::string strip(std::string_view str)
+{
+    size_t start = 0, end = str.size();
+    while (start < str.size() && std::isspace(str[start])) {
+        start++;
+    }
+    while (end > 0 && std::isspace(str[end - 1])) {
+        end--;
+    }
+    return std::string(str.substr(start, end - start));
+}
+
+constexpr bool _isDelimiter(char c, char delim)
+{
+    return c == delim;
+}
+
+constexpr bool _isDelimiter(char c, const std::ranges::range auto& delims)
+{
+    return std::ranges::find(delims, c) != std::end(delims);
+}
+
+constexpr bool _checkDelimiter(char)
 {
     return false;
 }
 
-template <typename... Delimiters>
-constexpr bool _isDelimiter(char c, char delimiter, Delimiters... delimiters)
+template <typename Delim, typename... RestDelims>
+bool _checkDelimiter(char c, Delim&& delim, RestDelims&&... restDelims)
 {
-    return c == delimiter || _isDelimiter(c, delimiters...);
+    return _isDelimiter(c, std::forward<Delim>(delim)) ||
+           _checkDelimiter(c, std::forward<RestDelims>(restDelims)...);
 }
 
-template <typename... Delimiters>
-std::vector<std::string_view> split(std::string_view str, Delimiters... delimiters)
+template <typename... Delims>
+std::vector<std::string> split(std::string_view str, Delims&&... delims)
 {
-    std::vector<std::string_view> result;
-
-    if (str.size() > 0 && _isDelimiter(str[0], delimiters...)) {
-        result.push_back("");
+    if (str.empty()) {
+        return {};
     }
-    size_t start = 0, end = 0;
-    while (end <= str.size()) {
-        if (end == str.size() || _isDelimiter(str[end], delimiters...)) {
-            if (start != end) {
-                result.push_back(str.substr(start, end - start));
+    std::vector<std::string> result;
+    // If the first character is a delimiter, add an empty string to the result
+    if (_checkDelimiter(str[0], std::forward<Delims>(delims)...)) {
+        result.emplace_back("");
+    }
+    size_t start = 0;
+    for (size_t i = 0; i <= str.size(); ++i) {
+        if (i == str.size() || _checkDelimiter(str[i], std::forward<Delims>(delims)...)) {
+            if (start < i) {
+                result.emplace_back(str.substr(start, i - start));
             }
-            start = end + 1;
+            start = i + 1;
         }
-        end++;
     }
-    if (str.size() > 0 && _isDelimiter(str[str.size() - 1], delimiters...)) {
-        result.push_back("");
+    // If the last character is a delimiter, add an empty string to the result
+    if (_checkDelimiter(str[str.size() - 1], std::forward<Delims>(delims)...)) {
+        result.emplace_back("");
     }
     return result;
 }
