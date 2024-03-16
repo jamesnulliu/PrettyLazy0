@@ -1,5 +1,5 @@
 # Branch Naming Convention
-🌍: \[[English](./Branch_Naming_Convention.md)\]\[[中文](./Branch_Naming_Convention_zh.md)\]
+🌍: |[English](./Branch_Naming_Convention.md)|[中文](./Branch_Naming_Convention_zh.md)|
 
 In order to facilitate clear communication and organization within the team, we adhere to the following branch naming conventions:
 
