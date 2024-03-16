@@ -14,7 +14,8 @@ Check [Env Setup Guide](./docs/Env_Setup_Guide.md) for detailed environment setu
 
 **Before start, please first make sure you have setup the required environments.**
 
-Clone this repository with following command:
+
+Clone the repository with following command:
 
 ```bash
 git clone --single-branch -b main git@github.com:jamesnulliu/PrettyLazy0.git PrettyLazy0-main
@@ -31,7 +32,7 @@ bash scripts/build.sh
 To run test case:
 
 ```bash
-bash scrpts/test.sh
+bash scripts/test.sh
 ```
 
 To add the executable (namely `plazy`) to user PATH variable:
@@ -42,4 +43,8 @@ export PATH="$PATH:$(pwd)/bin"
 
 ## Contribute
 
-Contribution is welcomed. Please check [How to Contribute](./docs/How_to_Contribute.md) for contribution rules.
+Contribution is welcomed. 
+
+If you are not a collaborator, please check [How to Contribute as a Non-Collaborator](./docs/How_to_Contribute_as_a_Non-Collaborator.md) for contribution rules.
+
+If you are a collaborator, please check [How to Contribute as a Collaborator](./docs/How_to_Contribute_as_a_Collaborator.md) for contribution rules.
