@@ -2,7 +2,8 @@
 #include "plazy/Common/ArgParser.hpp"
 #include "plazy/Common/Logger.hpp"
 
-#include "example.hpp"
+#include "plazyExamples/LoggerExample.hpp"
+#include "plazyExamples/SplitExample.hpp"
 
 int main(int argc, char* argv[])
 {

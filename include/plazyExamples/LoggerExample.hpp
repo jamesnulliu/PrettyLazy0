@@ -1,8 +1,6 @@
-// This file is a simple example of how to use plazy logger system.
-#include "example.hpp"
 #include "plazy/Common/Logger.hpp"
 
-void loggerExample()
+inline void loggerExample()
 {
     PLAZY_CRITICAL("********** Logger Example Begin **********");
 

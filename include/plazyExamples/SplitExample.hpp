@@ -1,16 +1,13 @@
-#include "example.hpp"
 #include "plazy.hpp"
-#include "plazy/Common/Logger.hpp"
-#include <string>
 
-void printSplitedString(auto&& str)
+inline void printSplitedString(auto&& str)
 {
     for (size_t i = 0; i < str.size(); i++) {
         PLAZY_PRINT("str[{:>2}]: {}\n", i, str[i]);
     }
 }
 
-void splitExample()
+inline void splitExample()
 {
     PLAZY_CRITICAL("********** Split Example Begin **********");
 

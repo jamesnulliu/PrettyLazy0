@@ -1,2 +1,0 @@
-void loggerExample();
-void splitExample();
