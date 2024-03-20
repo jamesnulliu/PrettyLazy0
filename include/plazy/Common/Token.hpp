@@ -1,17 +1,19 @@
 #pragma once
-
 #include <array>
+#include <cstdint>
 #include <string>
 #include <string_view>
 
 namespace plazy
 {
-enum class TokenType
+enum class TokenType : uint8_t
 {
-    IDENT,
-    NUMBER,
+    None = 0,
     KEYWORD,
-    SYMBOL,
+    OPERATOR,
+    DELIMITER,
+    IDENTIFIER,
+    NUMBER
 };
 
 struct Token
@@ -24,4 +26,12 @@ constexpr std::string_view KEYWORDS[] = {"const", "var",   "procedure", "begin",
                                          "if",    "then",  "while",     "do",    "call",
                                          "odd",   "write", "read"};
 
+constexpr std::array<char, 9> OPERATORS = {'+', '-', '*', '/', '=', '#', '<', '>', ':'};  // Single
+
+constexpr std::array<char, 11> DELIMITERS = {'(', ')', ',', ';', '.'};
+
+bool isKeyword(const std::string& word);
+bool isOperator(char c);
+bool isDelimiter(char c);
+bool isNumber(const std::string& word);
 }  // namespace plazy
