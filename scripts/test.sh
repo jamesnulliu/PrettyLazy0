@@ -1,1 +1,1 @@
-./bin/plazy
+./bin/plazy  -f main.pl0 -o main.pl0.out
