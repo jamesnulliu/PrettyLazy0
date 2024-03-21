@@ -1,3 +1,4 @@
+#pragma once
 #include "plazy/Common/Logger.hpp"
 
 inline void loggerExample()

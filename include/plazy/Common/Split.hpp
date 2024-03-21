@@ -1,7 +1,8 @@
 #pragma once
-#include "Token.hpp"
 #include <string>
 #include <vector>
+
+#include "plazy/Core/Lexer.hpp"
 
 namespace plazy
 {

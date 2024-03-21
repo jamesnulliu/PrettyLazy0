@@ -1,120 +1,125 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include <exception>
 
 namespace plazy
 {
-class Exception
+
+class FileOpenFailed : public std::exception
 {
 public:
-    void output() const
+    FileOpenFailed(const std::string& fileName) : m_fileName(fileName)
     {
-        std::cerr << "Compile failed\n";
-        output_message();
     }
 
-protected:
-    virtual void output_message() const = 0;
+private:
+    virtual const char* what() const noexcept override 
+    {
+        // std::cerr << "Cannot read file: " << file_name << std::endl;
+        return ("Cannot read file: " + m_fileName).c_str();
+    }
+
+private:
+    std::string m_fileName;
 };
 
-class FileOpenFailed : public Exception
+class InvalidWord : public std::exception
 {
 public:
-    FileOpenFailed(const std::string& file_name) : file_name(file_name)
+    InvalidWord(const std::string& word) : m_word(word)
     {
     }
 
 private:
-    virtual void output_message() const override
+    virtual const char* what() const noexcept override 
     {
-        std::cerr << "Cannot read file: " << file_name << std::endl;
+        return ("Invalid word: " + m_word).c_str();
     }
 
 private:
-    std::string file_name;
+    std::string m_word;
 };
 
-class InvalidWord : public Exception
+class UnknownOperator : std::exception
 {
 public:
-    InvalidWord(const std::string& word) : word(word)
+    UnknownOperator(const std::string& op) : m_op(op)
     {
     }
 
 private:
-    virtual void output_message() const override
+    virtual const char* what() const noexcept override 
     {
-        std::cerr << "Invalid word: " << word << std::endl;
+        return ("Unknown operator: " + m_op).c_str();
     }
 
 private:
-    std::string word;
+    std::string m_op;
 };
 
-class UnknownOperator : public Exception
+class UnknownDelimiter : public std::exception
 {
 public:
-    UnknownOperator(const std::string& op) : op(op)
+    UnknownDelimiter(const std::string& delim) : m_delim(delim)
     {
     }
 
-private:
-    virtual void output_message() const override
+    virtual const char* what() const noexcept override 
     {
-        std::cerr << "Unknown operator: " << op << std::endl;
+        return ("Unknown delimiter: " + m_delim).c_str();
     }
 
 private:
-    std::string op;
+    std::string m_delim;
 };
 
-class UnknownDelimiter : public Exception
+class UnknownWord : public std::exception
 {
 public:
-    UnknownDelimiter(const std::string& delim) : delim(delim)
+    UnknownWord(const std::string& word) : m_word(word)
     {
-    }
-
-    virtual void output_message() const override
-    {
-        std::cerr << "Unknown delimiter: " << delim << std::endl;
     }
 
 private:
-    std::string delim;
+    virtual const char* what() const noexcept override 
+    {
+        return ("Unknown word: " + m_word).c_str();
+    }
+
+private:
+    std::string m_word;
 };
 
-class UnknownWord : public Exception
+class SizeMismatch : public std::exception
 {
 public:
-    UnknownWord(const std::string& word) : word(word)
+    SizeMismatch(const std::string& msg) : m_msg(msg)
     {
     }
 
 private:
-    virtual void output_message() const override
+    virtual const char* what() const noexcept override 
     {
-        std::cerr << "Unknown word: " << word << std::endl;
+        return ("Size mismatch: " + m_msg).c_str();
     }
 
 private:
-    std::string word;
+    std::string m_msg;
 };
 
-class SizeMismatch : public Exception
+class NotImplemented : public std::exception
 {
 public:
-    SizeMismatch(const std::string& msg) : msg(msg)
+    NotImplemented(const std::string& msg) : m_msg(msg)
     {
     }
-
 private:
-    virtual void output_message() const override
+    virtual const char* what() const noexcept override 
     {
-        std::cerr << "Size mismatch: " << msg << std::endl;
+        return ("Not implemented: " + m_msg).c_str();
     }
-
 private:
-    std::string msg;
+    std::string m_msg;
 };
 }  // namespace plazy

@@ -1,3 +1,4 @@
+#pragma once
 #include "plazy.hpp"
 
 inline void printSplitedString(auto&& str)
