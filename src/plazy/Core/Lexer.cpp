@@ -1,6 +1,5 @@
 #include "plazy/Core/Lexer.hpp"
 #include "plazy/Common/Exceptions.hpp"
-#include "plazy/Common/Predefine.hpp"
 #include <algorithm>
 
 plazy::Lexer::Lexer(const std::string& fileName)

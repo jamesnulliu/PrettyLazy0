@@ -9,7 +9,7 @@ set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Include directories
-include_directories(include)
+include_directories(./include)
 
 # Source files
 file(GLOB_RECURSE SOURCES src/*.cpp)

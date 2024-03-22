@@ -1,9 +1,9 @@
 #pragma once
+#include "plazy/Common/PreDefined.hpp"
 #include <array>
 #include <cstdint>
 #include <fstream>
 #include <string_view>
-#include "plazy/Common/Predefine.hpp"
 
 namespace plazy
 {
