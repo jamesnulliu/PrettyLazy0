@@ -3,10 +3,11 @@
 #include <cstdint>
 #include <fstream>
 #include <string_view>
+#include "plazy/Common/Predefine.hpp"
 
 namespace plazy
 {
-enum class TokenType : uint8_t
+enum class TokenType : uint16_t
 {
     ENDOFFILE = 0,
     KEYWORD,
@@ -22,14 +23,6 @@ struct Token
     std::string value;
 };
 
-constexpr std::array<std::string_view, 13> KEYWORDS = {
-    "const", "var", "procedure", "begin", "end",   "if",  "then",
-    "while", "do",  "call",      "odd",   "write", "read"};
-
-constexpr std::array<std::string_view, 9> OPERATORS = {"+", "-", "*", "/", "#", "<", ">", ":="};
-
-// constexpr std::array<char, 11> DELIMITERS = {'(', ')', ',', ';', '.'};
-constexpr std::array<std::string_view, 5> DELIMITERS = {"(", ")", ",", ";", "."};
 
 /**
  * @brief PrettyLazy Lexer for PL/0 language
@@ -49,12 +42,15 @@ public:
      */
     Token nextToken();
 
+    bool fileIsOpen() const { return m_currentChar != PLAZY_EOF; }
+    bool fileIsClosed() const { return !fileIsOpen(); }
+
 private:
     void nextChar();
     void skipWhitespace();
     void skipComment();
     Token getNumber();
-    Token getOperator();
+    Token getOperatorOrDelimiter();
     Token parseDelimiter();
     Token getKeywordOrIdentifier();
     // [ToDo]
@@ -62,6 +58,6 @@ private:
 
 private:
     std::ifstream m_file;
-    char m_currentChar;
+    char m_currentChar = PLAZY_EOF;
 };
 }  // namespace plazy

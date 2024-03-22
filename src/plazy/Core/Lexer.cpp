@@ -1,5 +1,6 @@
 #include "plazy/Core/Lexer.hpp"
 #include "plazy/Common/Exceptions.hpp"
+#include "plazy/Common/Predefine.hpp"
 #include <algorithm>
 
 plazy::Lexer::Lexer(const std::string& fileName)
@@ -24,14 +25,14 @@ plazy::Token plazy::Lexer::nextToken()
     if (std::isdigit(m_currentChar)) {
         return getNumber();
     } else if (std::ispunct(m_currentChar)) {
-        return getOperator();
+        return getOperatorOrDelimiter();
     } else if (std::isalpha(m_currentChar)) {
         return getKeywordOrIdentifier();
+    } else if (m_currentChar == PLAZY_EOF) {
+        return {TokenType::ENDOFFILE, ""};
     } else if (m_currentChar == '"') {
         // return parseString();
         throw NotImplemented("String parsing is not implemented yet");
-    } else if (m_currentChar == EOF) {
-        return {TokenType::ENDOFFILE, ""};
     } else {
         throw InvalidWord(std::string(1, m_currentChar));
     }
@@ -52,56 +53,64 @@ void plazy::Lexer::skipWhitespace()
 void plazy::Lexer::skipComment()
 {
     if (m_currentChar == '{') {
-        while (m_currentChar != '}' && m_currentChar != EOF) {
+        do {
+            nextChar();
+        } while (m_currentChar != '}' && m_currentChar != PLAZY_EOF);
+
+        if (m_currentChar == '}') {
             nextChar();
         }
-        nextChar();
     }
+    skipWhitespace();
 }
 
 plazy::Token plazy::Lexer::getNumber()
 {
     std::string number;
-    while (std::isdigit(m_currentChar)) {
+    do {
         number += m_currentChar;
         nextChar();
+    } while (std::isdigit(m_currentChar));
+
+    // If the current char is an alphabet, then it is an invalid word.
+    if (std::isalpha(m_currentChar)) {
+        throw InvalidWord(number + m_currentChar);
     }
     return {TokenType::NUMBER, number};
 }
 
-plazy::Token plazy::Lexer::getOperator()
+plazy::Token plazy::Lexer::getOperatorOrDelimiter()
 {
-    std::string op;
-    while (std::ispunct(m_currentChar)) {
-        op += m_currentChar;
+    Token token;
+    if (std::ranges::find(DELIMITERS, m_currentChar) != DELIMITERS.end()) {
+        token = {TokenType::DELIMITER, std::string(1, m_currentChar)};
+    } else if (std::ranges::find(SPECIAL_OPERATORS, m_currentChar) != SPECIAL_OPERATORS.end()) {
+        std::string op = std::string(1, m_currentChar);
         nextChar();
+        if (m_currentChar == '=') {  // <=, >=, :=
+            op += m_currentChar;
+        } else {
+            if (op == ":") {
+                throw InvalidWord(op);
+            }
+        }
+        token = {TokenType::OPERATOR, op};
+    } else if (std::ranges::find(SINGLE_OPERATORS, m_currentChar) != SINGLE_OPERATORS.end()) {
+        token = {TokenType::OPERATOR, std::string(1, m_currentChar)};
+    } else {
+        throw InvalidWord(std::string(1, m_currentChar));
     }
-    if (std::ranges::find(OPERATORS, op) == OPERATORS.end()) {
-        throw plazy::UnknownOperator(op);
-    }
-    return {TokenType::OPERATOR, op};
-}
-
-plazy::Token plazy::Lexer::parseDelimiter()
-{
-    std::string delimiter;
-    while (std::ispunct(m_currentChar)) {
-        delimiter += m_currentChar;
-        nextChar();
-    }
-    if (std::ranges::find(DELIMITERS, delimiter) == DELIMITERS.end()) {
-        throw plazy::UnknownDelimiter(delimiter);
-    }
-    return {TokenType::DELIMITER, delimiter};
+    nextChar();
+    return token;
 }
 
 plazy::Token plazy::Lexer::getKeywordOrIdentifier()
 {
     std::string word;
-    while (std::isalnum(m_currentChar)) {
-        word += m_currentChar;
+    do {
+        word += std::tolower(m_currentChar);
         nextChar();
-    }
+    } while (std::isalnum(m_currentChar));
 
     if (std::ranges::find(KEYWORDS, word) != KEYWORDS.end()) {
         return {TokenType::KEYWORD, word};

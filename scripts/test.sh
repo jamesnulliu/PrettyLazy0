@@ -1,1 +1,1 @@
-./bin/plazy  -f main.pl0 -o main.pl0.out
+./bin/plazy  -f pl0-src-code/rec-ident-case1.pl0 -o main.pl0.out
