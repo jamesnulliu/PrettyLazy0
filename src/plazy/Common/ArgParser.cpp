@@ -1,9 +1,11 @@
 #include "plazy/Common/ArgParser.hpp"
+#include "plazy/Common/Exceptions.hpp"
 #include <iostream>
 
-void plazy::ArgParser::addOption(std::string_view name, std::string_view description,
-                                 std::string_view type,
-                                 std::optional<std::string> defaultValue)
+namespace plazy
+{
+void ArgParser::addOption(std::string_view name, std::string_view description,
+                          std::string_view type, std::optional<std::string> defaultValue)
 {
     if (m_options.find(name) != m_options.end()) {
         PLAZY_ERROR("Option \"{}\" already exists", name);
@@ -17,16 +19,14 @@ void plazy::ArgParser::addOption(std::string_view name, std::string_view descrip
         if (type == "int") {
             try {
                 std::stoi(defaultValue.value());
-            }
-            catch (const std::invalid_argument& e) {
+            } catch (const std::invalid_argument& e) {
                 PLAZY_ERROR("Invalid default value for option \"{}\"; Expected type: int", name);
                 return;
             }
         } else if (type == "float") {
             try {
                 std::stof(defaultValue.value());
-            }
-            catch (const std::invalid_argument& e) {
+            } catch (const std::invalid_argument& e) {
                 PLAZY_ERROR("Invalid default value for option \"{}\"; Expected type: float", name);
                 return;
             }
@@ -40,7 +40,7 @@ void plazy::ArgParser::addOption(std::string_view name, std::string_view descrip
     m_options[name] = {std::string(description), std::string(type), defaultValue};
 }
 
-bool plazy::ArgParser::parse(int argc, char* argv[]) noexcept
+bool ArgParser::parse(int argc, char* argv[]) noexcept
 {
     for (int i = 1; i < argc; ++i) {
         std::string_view arg = argv[i];
@@ -50,7 +50,8 @@ bool plazy::ArgParser::parse(int argc, char* argv[]) noexcept
         } else if (arg.starts_with("-")) {
             dashCount = 1;
         } else {
-            PLAZY_ERROR("Invalid argument: \"{}\"; An argument must starts with \"-\" or \"--\"",
+            PLAZY_ERROR("Invalid argument: \"{}\"; "
+                        "An argument must starts with \"-\" or \"--\"",
                         arg);
             return false;
         }
@@ -71,3 +72,4 @@ bool plazy::ArgParser::parse(int argc, char* argv[]) noexcept
     }
     return true;
 }
+}  // namespace plazy

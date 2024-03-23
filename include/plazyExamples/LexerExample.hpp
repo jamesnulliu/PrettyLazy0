@@ -1,6 +1,9 @@
 #pragma once
-#include "plazy/Core/Lexer.hpp"
+#include "plazy.hpp"
 
-inline void lexerExample() {
-
+namespace plazy
+{
+inline void lexerExample()
+{
 }
+}  // namespace plazy

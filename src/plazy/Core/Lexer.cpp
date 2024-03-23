@@ -2,21 +2,23 @@
 #include "plazy/Common/Exceptions.hpp"
 #include <algorithm>
 
-plazy::Lexer::Lexer(const std::string& fileName)
+namespace plazy
+{
+Lexer::Lexer(const std::string& fileName)
 {
     m_file.open(fileName);
     if (!m_file.is_open()) {
-        throw plazy::FileOpenFailed(fileName);
+        throw FileOpenFailed(fileName);
     }
     nextChar();
 }
 
-plazy::Lexer::~Lexer()
+Lexer::~Lexer()
 {
     m_file.close();
 }
 
-plazy::Token plazy::Lexer::nextToken()
+Token Lexer::nextToken()
 {
     skipWhitespace();
     skipComment();
@@ -37,19 +39,19 @@ plazy::Token plazy::Lexer::nextToken()
     }
 }
 
-void plazy::Lexer::nextChar()
+void Lexer::nextChar()
 {
     m_currentChar = m_file.get();
 }
 
-void plazy::Lexer::skipWhitespace()
+void Lexer::skipWhitespace()
 {
     while (std::isspace(m_currentChar)) {
         nextChar();
     }
 }
 
-void plazy::Lexer::skipComment()
+void Lexer::skipComment()
 {
     if (m_currentChar == '{') {
         do {
@@ -63,7 +65,7 @@ void plazy::Lexer::skipComment()
     skipWhitespace();
 }
 
-plazy::Token plazy::Lexer::getNumber()
+Token Lexer::getNumber()
 {
     std::string number;
     do {
@@ -78,7 +80,7 @@ plazy::Token plazy::Lexer::getNumber()
     return {TokenType::NUMBER, number};
 }
 
-plazy::Token plazy::Lexer::getOperatorOrDelimiter()
+Token Lexer::getOperatorOrDelimiter()
 {
     Token token;
     if (std::ranges::find(DELIMITERS, m_currentChar) != DELIMITERS.end()) {
@@ -103,7 +105,7 @@ plazy::Token plazy::Lexer::getOperatorOrDelimiter()
     return token;
 }
 
-plazy::Token plazy::Lexer::getKeywordOrIdentifier()
+Token Lexer::getKeywordOrIdentifier()
 {
     std::string word;
     do {
@@ -116,4 +118,5 @@ plazy::Token plazy::Lexer::getKeywordOrIdentifier()
     } else {
         return {TokenType::IDENTIFIER, word};
     }
+}
 }

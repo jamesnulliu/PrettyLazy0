@@ -6,6 +6,8 @@
 
 #include "plazy.hpp"
 
+namespace plazy::Experiment
+{
 inline void recognizeIdent(const std::string& srcFile, const std::string& outputFile)
 {
     plazy::Lexer lexer(srcFile);
@@ -35,4 +37,5 @@ inline void recognizeIdent(const std::string& srcFile, const std::string& output
         output << std::format("({}: {})\n", pair.first, pair.second);
     }
     output.close();
+}
 }

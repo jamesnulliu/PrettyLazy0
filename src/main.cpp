@@ -4,8 +4,9 @@
 
 #include "plazyExamples/LoggerExample.hpp"
 #include "plazyExamples/SplitExample.hpp"
+#include "plazyExamples/LexerExample.hpp"
 
-#include "plazy/Experiment/RecognizeIdent.hpp"
+#include "plazyExperiments/RecognizeIdent.hpp"
 
 int main(int argc, char* argv[])
 {
@@ -40,7 +41,7 @@ int main(int argc, char* argv[])
         return 1;
     }
 
-    recognizeIdent(srcFile, outputFile);
+    plazy::Experiment::recognizeIdent(srcFile, outputFile);
 
     return 0;
 }
