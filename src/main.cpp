@@ -4,7 +4,7 @@
 
 #include "plazyExamples/LoggerExample.hpp"
 #include "plazyExamples/SplitExample.hpp"
-
+#include "plazyExamples/LexerExample.hpp"
 #include "plazy/Experiment/RecognizeIdent.hpp"
 
 int main(int argc, char* argv[])
@@ -16,7 +16,7 @@ int main(int argc, char* argv[])
 
     // loggerExample();
     // splitExample();
-
+    // lexerExample();
     plazy::ArgParser argParser;
     argParser.addOption("f", "The source file to be compiled", "string");
     argParser.addOption("o", "The output file", "string", "a.out");
