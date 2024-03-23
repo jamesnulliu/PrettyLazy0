@@ -1,1 +1,1 @@
-./bin/plazy  -f main.pl0 -o main.pl0.out
+./bin/plazy  -f data/exp01-recognize-identifier/case01.pl0 -o bin/main.pl0.out

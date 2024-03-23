@@ -6,7 +6,7 @@ mkdir -p $PROJECT_ROOT_DIR/build
 
 cd $PROJECT_ROOT_DIR/build
 
-cmake ..
+cmake .. -DCMAKE_BUILD_TYPE=Release
 
 make -j$(nproc)
 
