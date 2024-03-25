@@ -1,7 +1,7 @@
 #pragma once
+#include <exception>
 #include <iostream>
 #include <string>
-#include <exception>
 
 namespace plazy
 {
@@ -14,7 +14,7 @@ public:
     }
 
 private:
-    virtual const char* what() const noexcept override 
+    virtual const char* what() const noexcept override
     {
         return ("Cannot read file: " + m_fileName).c_str();
     }
@@ -31,7 +31,7 @@ public:
     }
 
 private:
-    virtual const char* what() const noexcept override 
+    virtual const char* what() const noexcept override
     {
         return ("Invalid word: " + m_word).c_str();
     }
@@ -40,18 +40,19 @@ private:
     std::string m_word;
 };
 
-
 class NotImplemented : public std::exception
 {
 public:
     NotImplemented(const std::string& msg) : m_msg(msg)
     {
     }
+
 private:
-    virtual const char* what() const noexcept override 
+    virtual const char* what() const noexcept override
     {
         return ("Not implemented: " + m_msg).c_str();
     }
+
 private:
     std::string m_msg;
 };
