@@ -14,7 +14,7 @@ cd PrettyLazy0
 
 ## 2. 创建/切换分支
 
-在GitHub的分支页面上，查看是否已经有适合你的贡献的现有分支。
+在GitHub的[分支页面](https://github.com/jamesnulliu/PrettyLazy0/branches)上，查看是否已经有适合你的贡献的现有分支。
 
 假如你想对正则表达式添加支持，你应首先检查是否存在名为 feature/regex-support 的远程分支。
 
