@@ -37,7 +37,7 @@ public:
      * 
      * @return plazy::Token, which consists of token type and its value.
      * @throw plazy::FileOpenFailed If file cannot be opened.
-     * @throw plazy::InvalidWord If invalid word is found.
+     * @throw plazy::UnknownWord If invalid word is found.
      * @throw plazy::UnknownOperator If unknown operator is found.
      */
     Token nextToken();

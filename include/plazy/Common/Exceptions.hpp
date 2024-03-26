@@ -31,12 +31,42 @@ private:
     }
 };
 
-class InvalidWord : public Exception
+class UnknownWord : public Exception
 {
 public:
-    InvalidWord(const std::string& word)
+    UnknownWord(const std::string& word)
     {
-        m_msg = "Invalid word: " + word;
+        m_msg = "Unknown word: " + word;
+    }
+
+private:
+    virtual const char* what() const noexcept override
+    {
+        return m_msg.c_str();
+    }
+};
+
+class InvalidIdent: public Exception
+{
+public:
+    InvalidIdent(const std::string& ident)
+    {
+        m_msg = "Invalid identifier: " + ident;
+    }
+
+private:
+    virtual const char* what() const noexcept override
+    {
+        return m_msg.c_str();
+    }
+};
+
+class InvalidOperator: public Exception
+{
+public:
+    InvalidOperator(const std::string& op)
+    {
+        m_msg = "Invalid operator: " + op;
     }
 
 private:

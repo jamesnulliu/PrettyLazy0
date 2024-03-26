@@ -1,1 +1,1 @@
-./bin/plazy  -f data/exp01-recognize-identifier/case01.pl0 -o bin/main.pl0.out
+./bin/debug/Linux_x86_64/plazy  -f data/exp02-analyze-morphology/case01.pl0 -o bin/main.pl0.out

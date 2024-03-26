@@ -35,7 +35,7 @@ Token Lexer::nextToken()
         // return parseString();
         throw NotImplemented("String parsing is not implemented yet");
     } else {
-        throw InvalidWord(std::string(1, m_currentChar));
+        throw UnknownWord(std::string(1, m_currentChar));
     }
 }
 
@@ -73,9 +73,9 @@ Token Lexer::getNumber()
         nextChar();
     } while (std::isdigit(m_currentChar));
 
-    // If the current char is an alphabet, then it is an invalid word.
+    // If the current char is an alphabet, then it is an invalid identifier.
     if (std::isalpha(m_currentChar)) {
-        throw InvalidWord(number + m_currentChar);
+        throw InvalidIdent(number + m_currentChar);
     }
     return {TokenType::NUMBER, number};
 }
@@ -92,14 +92,14 @@ Token Lexer::getOperatorOrDelimiter()
             op += m_currentChar;
         } else {
             if (op == ":") {
-                throw InvalidWord(op);
+                throw InvalidOperator(op);
             }
         }
         token = {TokenType::OPERATOR, op};
     } else if (std::ranges::find(SINGLE_OPERATORS, m_currentChar) != SINGLE_OPERATORS.end()) {
         token = {TokenType::OPERATOR, std::string(1, m_currentChar)};
     } else {
-        throw InvalidWord(std::string(1, m_currentChar));
+        throw UnknownWord(std::string(1, m_currentChar));
     }
     nextChar();
     return token;

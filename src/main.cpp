@@ -2,10 +2,11 @@
 #include "plazy/Common/ArgParser.hpp"
 #include "plazy/Common/Logger.hpp"
 
+#include "plazyExamples/LexerExample.hpp"
 #include "plazyExamples/LoggerExample.hpp"
 #include "plazyExamples/SplitExample.hpp"
-#include "plazyExamples/LexerExample.hpp"
 
+#include "plazyExperiments/AnalyzeMorphology.hpp"
 #include "plazyExperiments/RecognizeIdent.hpp"
 
 int main(int argc, char* argv[])
@@ -41,7 +42,12 @@ int main(int argc, char* argv[])
         return 1;
     }
 
-    plazy::Experiment::recognizeIdent(srcFile, outputFile);
+    try {
+        // plazy::Experiment::recognizeIdent(srcFile, outputFile);
+        plazy::Experiment::analyzeMorphology(srcFile, outputFile);
+    } catch (const std::exception& e) {
+        std::cout << e.what() << std::endl;
+    }
 
     return 0;
 }
