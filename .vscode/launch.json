@@ -57,7 +57,7 @@
             "name": "Launch: [Debug][Windows-x64][MSVC] ",
             "type": "cppvsdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/bin/Debug/Windows_x86_64/plazy.exe",
+            "program": "${workspaceFolder}/bin/Debug/Windows_AMD64/plazy.exe",
             "args": [
                 "-f",
                 "data/exp01-recognize-identifier/case11.pl0", 
@@ -74,7 +74,7 @@
             "name": "Launch: [Realse][Windows-x64][MSVC]",
             "type": "cppvsdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/bin/Release/Windows_x86_64/plazy.exe",
+            "program": "${workspaceFolder}/bin/Release/Windows_AMD64/plazy.exe",
             "args": [
                 "-f",
                 "data/exp01-recognize-identifier/case11.pl0", 
