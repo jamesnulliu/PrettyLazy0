@@ -8,7 +8,7 @@
             "program": "${workspaceFolder}/bin/Debug/Linux_x86_64/plazy",
             "args": [
                 "-f",
-                "data/exp01-recognize-identifier/case11.pl0", 
+                "data/exp01-recognize-identifier/case02.pl0", 
                 "-o",
                 "data/result.txt"
             ],
@@ -34,7 +34,7 @@
             "program": "${workspaceFolder}/bin/Release/Linux_x86_64/plazy",
             "args": [
                 "-f",
-                "data/exp01-recognize-identifier/case11.pl0", 
+                "data/exp01-recognize-identifier/case02.pl0", 
                 "-o",
                 "data/result.txt"
             ],
