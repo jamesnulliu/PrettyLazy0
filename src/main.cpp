@@ -1,20 +1,47 @@
 #include "plazy.hpp"
-#include <format>
-#include <iostream>
+#include "plazy/Common/ArgParser.hpp"
+#include "plazy/Common/Logger.hpp"
 
-int main()
+#include "plazyExamples/LoggerExample.hpp"
+#include "plazyExamples/SplitExample.hpp"
+#include "plazyExamples/LexerExample.hpp"
+
+#include "plazyExperiments/RecognizeIdent.hpp"
+
+int main(int argc, char* argv[])
 {
-    std::cout << "Hello, World!\n";
-    std::cout << std::format("'SHU' {} a PL/0 keyword\n",
-                             plazy::is_keyword("SHU") ? "is" : "is not");
-    std::string str = "const";
-    std::cout << std::format("'{}' {} a PL/0 keyword\n", str,
-                             plazy::is_keyword(str) ? "is" : "is not");
+    // for(size_t i=0; i<argc; ++i)
+    // {
+    //     PLAZY_TRACE("argv[{}]: {}", i, argv[i]);
+    // }
 
-    str = "!!Hello, I'm Tom...  I love coding!";
-    auto splited = plazy::split(str, ' ', ',', '.', '!');
-    for (auto& s : splited) {
-        std::cout << s << std::endl;
+    // loggerExample();
+    // splitExample();
+    // lexerExample();
+    plazy::ArgParser argParser;
+    argParser.addOption("f", "The source file to be compiled", "string");
+    argParser.addOption("o", "The output file", "string", "a.out");
+    argParser.parse(argc, argv);
+
+    std::string srcFile, outputFile;
+    auto value = argParser.get<std::string>("f");
+    if (value) {
+        PLAZY_TRACE("Source file: {}", value.value());
+        srcFile = value.value();
+    } else {
+        PLAZY_ERROR("Source file not provided");
+        return 1;
     }
+    value = argParser.get<std::string>("o");
+    if (value) {
+        PLAZY_TRACE("Output file: {}", value.value());
+        outputFile = value.value();
+    } else {
+        PLAZY_ERROR("Output file not provided");
+        return 1;
+    }
+
+    plazy::Experiment::recognizeIdent(srcFile, outputFile);
+
     return 0;
 }

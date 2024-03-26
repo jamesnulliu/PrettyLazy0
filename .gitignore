@@ -32,7 +32,9 @@
 *.app
 
 # CMake Build Directory
-build
+build/*
 
 # Output Directory
-bin
+bin/*
+
+.vscode/settings.json

@@ -9,16 +9,18 @@ set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Include directories
-include_directories(include)
+include_directories(./include)
 
 # Source files
 file(GLOB_RECURSE SOURCES src/*.cpp)
+# Exclude main.cpp from the sources
+list(FILTER SOURCES EXCLUDE REGEX ".*main.cpp$")
 
-# Set output directory
-set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
+# Set output directory: bin/{Release, Debug}/{win,linux,mac}_{x86, x64}
+set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin/${CMAKE_BUILD_TYPE}/${CMAKE_SYSTEM_NAME}_${CMAKE_SYSTEM_PROCESSOR})
 
 # Add executable with the project name
-add_executable(plazy ${SOURCES})
+add_executable(plazy ${SOURCES} "src/main.cpp")
 
 # [To be Tested] Visual Studio Specific Options
 if(MSVC)
@@ -29,12 +31,6 @@ if(MSVC)
     # MSVC compiler-specific options
     add_compile_options(/permissive- /Zc:forScope)
 
-    # Set the startup project to 'plazy' so that Visual Studio directly launches this project.
-    set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT plazy)
-
-    # Optional: Set debug working directory (useful for debugging with Visual Studio)
-    set_property(TARGET plazy PROPERTY VS_DEBUGGER_WORKING_DIRECTORY "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}")
-
 # g++/clang++ specific options
 else()
     # Set different compile options for Release and Debug modes
@@ -42,3 +38,8 @@ else()
     set(CMAKE_CXX_FLAGS_DEBUG "-g")
     
 endif()
+
+# Copy the executable to the bin/current directory
+# add_custom_command(TARGET plazy POST_BUILD
+#     COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:plazy> ${PROJECT_SOURCE_DIR}/bin/current/
+# )

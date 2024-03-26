@@ -8,7 +8,19 @@
             "defines": [],
             "cStandard": "c17",
             "cppStandard": "c++23",
-            "intelliSenseMode": "linux-gcc-x64"
+            "intelliSenseMode": "linux-gcc-x64",
+            "configurationProvider": "ms-vscode.cmake-tools"
+        },
+        {
+            "name": "Windows",
+            "includePath": [
+                "${workspaceFolder}/include"
+            ],
+            "defines": [],
+            "cStandard": "c17",
+            "cppStandard": "c++23",
+            "intelliSenseMode": "msvc-x64",
+            "configurationProvider": "ms-vscode.cmake-tools"
         }
     ],
     "version": 4
