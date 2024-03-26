@@ -6,89 +6,89 @@
 namespace plazy
 {
 
-class FileOpenFailed : public std::exception
+class Exception : public std::exception
 {
 public:
-    FileOpenFailed(const std::string& fileName) : m_fileName(fileName)
-    {
-    }
+    Exception() = default;
+    virtual ~Exception() = default;
 
-private:
-    virtual const char* what() const noexcept override
-    {
-        return ("Cannot read file: " + m_fileName).c_str();
-    }
-
-private:
-    std::string m_fileName;
-};
-
-class InvalidWord : public std::exception
-{
-public:
-    InvalidWord(const std::string& word) : m_word(word)
-    {
-    }
-
-private:
-    virtual const char* what() const noexcept override
-    {
-        return ("Invalid word: " + m_word).c_str();
-    }
-
-private:
-    std::string m_word;
-};
-
-class NotImplemented : public std::exception
-{
-public:
-    NotImplemented(const std::string& msg) : m_msg(msg)
-    {
-    }
-
-private:
-    virtual const char* what() const noexcept override
-    {
-        return ("Not implemented: " + m_msg).c_str();
-    }
-
-private:
+protected:
     std::string m_msg;
 };
 
-class AlreadyExists : public std::exception
+class FileOpenFailed : public Exception
 {
 public:
-    AlreadyExists(const std::string& name, const std::string& value) : m_name(name), m_value(value)
+    FileOpenFailed(const std::string& fileName)
     {
+        m_msg = "Cannot read file: " + fileName;
     }
 
 private:
     virtual const char* what() const noexcept override
     {
-        return (m_name + "already exists: " + m_value).c_str();
+        return m_msg.c_str();
     }
-
-private:
-    std::string m_name;
-    std::string m_value;
 };
 
-
-class InvalidType : public std::exception
+class InvalidWord : public Exception
 {
 public:
-    InvalidType(const std::string& type) : m_type(type)
+    InvalidWord(const std::string& word)
     {
+        m_msg = "Invalid word: " + word;
     }
+
 private:
     virtual const char* what() const noexcept override
     {
-        return ("Invalid type: " + m_type).c_str();
+        return m_msg.c_str();
     }
+};
+
+class NotImplemented : public Exception
+{
+public:
+    NotImplemented(const std::string& msg)
+    {
+        m_msg = "Not implemented: " + msg;
+    }
+
 private:
-    std::string m_type;
+    virtual const char* what() const noexcept override
+    {
+        return m_msg.c_str();
+    }
+};
+
+class AlreadyExists : public Exception
+{
+public:
+    AlreadyExists(const std::string& name, const std::string& value)
+    {
+        m_msg = name + " already exists: " + value;
+    }
+
+private:
+    virtual const char* what() const noexcept override
+    {
+        return m_msg.c_str();
+    }
+};
+
+class InvalidType : public Exception
+{
+public:
+    InvalidType(const std::string& type)
+    {
+        m_msg = "Invalid type: " + type;
+    }
+
+private:
+    virtual const char* what() const noexcept override
+    {
+        return m_msg.c_str();
+    }
 };
 
 }  // namespace plazy
