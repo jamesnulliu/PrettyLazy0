@@ -1,0 +1,7 @@
+const num=3.14;
+var a;
+
+BEGIN
+    a:= 1*(num+3);
+    WrIte(a);
+end.

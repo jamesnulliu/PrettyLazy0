@@ -59,7 +59,7 @@ inline std::string getEncodedType(const plazy::Token& token)
         } else if (token.value == ".") {
             return "period";
         } else {
-            throw plazy::InvalidOperator(token.value);
+            throw plazy::UnknownWord(token.value);
         }
     }
     }

@@ -42,12 +42,8 @@ int main(int argc, char* argv[])
         return 1;
     }
 
-    try {
-        // plazy::Experiment::recognizeIdent(srcFile, outputFile);
-        plazy::Experiment::analyzeMorphology(srcFile, outputFile);
-    } catch (const std::exception& e) {
-        std::cout << e.what() << std::endl;
-    }
+    // plazy::Experiment::recognizeIdent(srcFile, outputFile);
+    plazy::Experiment::analyzeMorphology(srcFile, outputFile);
 
     return 0;
 }
