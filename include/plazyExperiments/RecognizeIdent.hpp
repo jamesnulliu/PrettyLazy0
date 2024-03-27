@@ -27,6 +27,7 @@ inline void recognizeIdent(const std::string& srcFile, const std::string& output
                 it->second++;
             }
         }
+        // PLAZY_INFO("{}", token.value);
     }
 
     std::ofstream output(outputFile);

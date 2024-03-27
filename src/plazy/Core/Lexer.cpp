@@ -29,7 +29,7 @@ Token Lexer::nextToken()
     if (cIsDelimiter(m_currentChar)) {
         return parseDelimiter();
     } else if (cIsOperator(m_currentChar)) {
-        return parseOpertor();
+        return parseOperator();
     } else if (cIsDigit(m_currentChar)) {
         return parseNumber();
     } else if (cIsAlpha(m_currentChar)) {
@@ -39,23 +39,15 @@ Token Lexer::nextToken()
     } else if (m_currentChar == '"') {
         throw NotImplemented("String parsing is not implemented yet");
     } else {
-        std::string str = std::string(1, m_currentChar);
-        do{
-            nextChar();
-            if (m_currentChar == PLAZY_EOF) {
-                break;
-            }
-            str += m_currentChar;
-        } while (cIsAlphaDigit(m_currentChar));
-        return {TokenType::NONE, str};
+        return parseUnknownSymbol();
     }
 }
 
 void Lexer::nextChar()
 {
-    if (m_currentChar == '\n') {
+    if (m_currentChar == '\n' || m_currentChar == '\r') {
         ++m_line;
-        m_column = 0;
+        m_column = 1;
     } else {
         ++m_column;
     }
@@ -89,19 +81,17 @@ Token Lexer::parseNumber()
     do {
         number += m_currentChar;
         nextChar();
-    } while (std::isdigit(m_currentChar));
+    } while (cIsDigit(m_currentChar));
 
     Token token{TokenType::NUMBER, number};
 
     if (cIsAlpha(m_currentChar)) {
+        PLAZY_ERROR("[Ln{}, Col{}] Invalid identifier: {}", m_line, m_column, token.value);
         token.type = TokenType::NONE;
-        token.value += m_currentChar;
-        nextChar();
-        while (cIsAlphaDigit(m_currentChar)) {
+        do {
             token.value += m_currentChar;
             nextChar();
-        }
-        PLAZY_ERROR("[Ln{}, Col{}] Invalid number: {}", m_line, m_column, token.value);
+        } while (cIsAlphaDigit(m_currentChar));
     }
 
     return token;
@@ -109,12 +99,13 @@ Token Lexer::parseNumber()
 
 Token Lexer::parseDelimiter()
 {
-    Token token = {TokenType::DELIMITER, std::string(1, m_currentChar)};
+    std::string delimiter = std::string(1, m_currentChar);
+    Token token = {TokenType::DELIMITER, delimiter};
     nextChar();
     return token;
 }
 
-Token Lexer::parseOpertor()
+Token Lexer::parseOperator()
 {
     std::string op;
     do {
@@ -123,6 +114,8 @@ Token Lexer::parseOpertor()
     } while (cIsOperator(m_currentChar));
     Token token = {{}, op};
     if (std::ranges::find(OPERATORS_STR, op) == OPERATORS_STR.end()) {
+        // [FIXME] "Unknown operator: >=++"
+        // But in fact, <= and + are both valid operators.
         PLAZY_ERROR("[Ln{}, Col{}] Unknown operator: {}", m_line, m_column, op);
         token.type = TokenType::NONE;
     } else {
@@ -143,5 +136,20 @@ Token Lexer::parseKeywordOrIdentifier()
     } else {
         return {TokenType::IDENTIFIER, word};
     }
+}
+
+Token Lexer::parseUnknownSymbol()
+{
+    PLAZY_ERROR("[Ln{}, Col{}] Unknown symbol: {}", m_line, m_column, m_currentChar);
+    std::string str = std::string(1, m_currentChar);
+    // do {
+    //     nextChar();
+    //     if (m_currentChar == PLAZY_EOF) {
+    //         break;
+    //     }
+    //     str += m_currentChar;
+    // } while (cIsAlphaDigit(m_currentChar));
+    nextChar();
+    return {TokenType::NONE, str};
 }
 }  // namespace plazy

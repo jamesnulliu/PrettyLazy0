@@ -106,9 +106,10 @@ private:
     void skipComment();
     Token parseNumber();
     Token parseDelimiter();
-    Token parseOpertor();
+    Token parseOperator();
     Token getOperatorOrDelimiter();
     Token parseKeywordOrIdentifier();
+    Token parseUnknownSymbol();
     // [ToDo]
     // Token parseString();
 
