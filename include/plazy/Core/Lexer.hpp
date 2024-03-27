@@ -37,8 +37,7 @@ public:
      *
      * @return plazy::Token, which consists of token type and its value.
      * @throw plazy::FileOpenFailed If file cannot be opened.
-     * @throw plazy::InvalidWord If invalid word is found.
-     * @throw plazy::UnknownOperator If unknown operator is found.
+     * @throw plazy::NotImplemented If the function is not implemented.
      */
     Token nextToken();
 
@@ -56,7 +55,7 @@ public:
     }
     /**
      * @brief Whether a character is in operator char set.
-     * @see plazy::OPERATORS_CH and plazy::OPERATORS_STR
+     * @see plazy::OPERATORS_CH
      * 
      * @param c Character to check.
      * @return true - If character is an operator.  
@@ -107,7 +106,6 @@ private:
     Token parseNumber();
     Token parseDelimiter();
     Token parseOperator();
-    Token getOperatorOrDelimiter();
     Token parseKeywordOrIdentifier();
     Token parseUnknownSymbol();
     // [ToDo]

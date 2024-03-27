@@ -13,8 +13,8 @@ constexpr std::array<std::string, 13> KEWORDS_STR = {
 
 constexpr std::array<char, 9> OPERATORS_CH = {'+', '-', '*', '/', '=', '#', '>', '<', ':'};
 
-constexpr std::array<std::string, 11> OPERATORS_STR = {
-    "+", "-", "*", "/", "=", "#", "<", ">", "<=", ">=", ":="};
+// constexpr std::array<std::string, 11> OPERATORS_STR = {
+//     "+", "-", "*", "/", "=", "#", "<", ">", "<=", ">=", ":="};
 
 constexpr std::array<char, 5> DELIMITERS_CH = {'(', ')', ',', ';', '.'};
 }  // namespace plazy
