@@ -3,7 +3,6 @@
 #include "plazy/Common/Logger.hpp"
 
 #include <algorithm>
-#include <regex>
 
 namespace plazy
 {
@@ -111,7 +110,7 @@ Token Lexer::parseOperator()
     do {
         op += m_currentChar;
         nextChar();
-    } while (cIsOperator(m_currentChar));
+    } while (cIsOperator(m_currentChar) && op.size() <= 2);
     Token token = {{}, op};
     if (std::ranges::find(OPERATORS_STR, op) == OPERATORS_STR.end()) {
         // [FIXME] "Unknown operator: >=++"
