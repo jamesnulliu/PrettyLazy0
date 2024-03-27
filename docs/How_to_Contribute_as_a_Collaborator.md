@@ -13,7 +13,7 @@ cd PrettyLazy0
 
 ## 2. Create/Switch to a Branch
 
-On GitHub branches page, **check if there has been an existing branch that is suitable for your contribution**. 
+On GitHub [branches page](https://github.com/jamesnulliu/PrettyLazy0/branches), **check if there has been an existing branch that is suitable for your contribution**. 
 
 Let's suppose you want to add support for regular expression. You should first check if there is a remote branch named `feature/regex-support`.  
 
