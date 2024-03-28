@@ -106,19 +106,21 @@ Token Lexer::parseDelimiter()
 
 Token Lexer::parseOperator()
 {
-    std::string op;
-    do {
-        op += m_currentChar;
-        nextChar();
-    } while (cIsOperator(m_currentChar) && op.size() <= 2);
-    Token token = {{}, op};
-    if (std::ranges::find(OPERATORS_STR, op) == OPERATORS_STR.end()) {
-        // [FIXME] "Unknown operator: >=++"
-        // But in fact, <= and + are both valid operators.
-        PLAZY_ERROR("[Ln{}, Col{}] Unknown operator: {}", m_line, m_column, op);
-        token.type = TokenType::NONE;
-    } else {
-        token.type = TokenType::OPERATOR;
+    Token token{TokenType::OPERATOR, std::string(1, m_currentChar)};
+    nextChar();
+    if (token.value == "<" || token.value == ">") {
+        if (m_currentChar == '=') {  // >=, <=
+            token.value += '=';
+            nextChar();
+        }
+    } else if (token.value == ":") {
+        if (m_currentChar == '=') {
+            token.value += '=';
+            nextChar();
+        } else {
+            PLAZY_ERROR("[Ln{}, Col{}] Unknown operator: {}", m_line, m_column, token.value[0]);
+            token.type = TokenType::NONE;
+        }
     }
     return token;
 }
