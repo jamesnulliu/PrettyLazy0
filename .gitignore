@@ -36,5 +36,7 @@ build/*
 
 # Output Directory
 bin/*
+bin-tests/*
 
-.vscode/settings.json
+.vscode/*
+!.vscode/*.example

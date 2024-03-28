@@ -1,4 +1,4 @@
-var i;
+^var i;
 
 procedure func;
 begin
@@ -13,3 +13,4 @@ end;
 begin
     func;
 end.
+'

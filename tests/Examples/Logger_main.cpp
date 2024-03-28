@@ -1,9 +1,6 @@
-#pragma once
-#include "plazy/Common/Logger.hpp"
+#include "plazy.hpp"
 
-namespace plazy
-{
-inline void loggerExample()
+int main()
 {
     PLAZY_CRITICAL("********** Logger Example Begin **********");
 
@@ -29,5 +26,4 @@ inline void loggerExample()
     PLAZY_ERROR("epoch: {:>6}; acc: {:>6.2f}%, loss: {:>6.2f}", 114514, 0.99, 0.01);
 
     PLAZY_CRITICAL("********** Logger Example End **********");
-}
 }

@@ -5,3 +5,5 @@ BEGIN
     a:= 1*(num+3);
     WrIte(a);
 end.
+
+
