@@ -38,4 +38,5 @@ build/*
 bin/*
 bin-test/*
 
-.vscode/settings.json
+.vscode/*
+!.vscode/*.example

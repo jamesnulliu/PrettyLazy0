@@ -1,4 +1,3 @@
-#pragma once
 #include <algorithm>
 #include <fstream>
 #include <string>
@@ -6,8 +5,6 @@
 
 #include "plazy.hpp"
 
-namespace plazy::Experiment
-{
 inline void recognizeIdent(const std::string& srcFile, const std::string& outputFile)
 {
     plazy::Lexer lexer(srcFile);
@@ -27,6 +24,7 @@ inline void recognizeIdent(const std::string& srcFile, const std::string& output
                 it->second++;
             }
         }
+        // PLAZY_INFO("{}", token.value);
     }
 
     std::ofstream output(outputFile);
@@ -38,4 +36,22 @@ inline void recognizeIdent(const std::string& srcFile, const std::string& output
     }
     output.close();
 }
+
+int main(int argc, char* argv[])
+{
+    plazy::ArgParser argParser;
+    argParser.addOption("f", "The source file to be compiled", "string");
+    argParser.addOption("o", "The output file", "string", "a.out");
+    argParser.parse(argc, argv);
+
+    std::string srcFile, outputFile;
+    auto value = argParser.get<std::string>("f");
+    PLAZY_TRACE("Source file: {}", *value);
+    srcFile = *value;
+
+    value = argParser.get<std::string>("o");
+    PLAZY_TRACE("Output file: {}", *value);
+    outputFile = *value;
+
+    recognizeIdent(srcFile, outputFile);
 }

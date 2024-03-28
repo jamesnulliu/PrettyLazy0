@@ -3,7 +3,7 @@
         {
             "name": "Linux",
             "includePath": [
-                "${workspaceFolder}/include"
+                "${workspaceFolder}/include/**"
             ],
             "defines": [],
             "cStandard": "c17",
@@ -14,7 +14,7 @@
         {
             "name": "Windows",
             "includePath": [
-                "${workspaceFolder}/include"
+                "${workspaceFolder}/include/**"
             ],
             "defines": [],
             "cStandard": "c17",

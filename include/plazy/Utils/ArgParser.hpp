@@ -1,10 +1,12 @@
 #pragma once
-#include "Logger.hpp"
 #include <optional>
 #include <sstream>
 #include <string>
 #include <string_view>
 #include <unordered_map>
+
+#include "plazy/Common/PreDefined.hpp"
+#include "plazy/Common/Logger.hpp"
 
 namespace plazy
 {

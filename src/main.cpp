@@ -1,23 +1,12 @@
 #include "plazy.hpp"
-#include "plazy/Common/ArgParser.hpp"
-#include "plazy/Common/Logger.hpp"
-
-#include "plazyExamples/LoggerExample.hpp"
-#include "plazyExamples/SplitExample.hpp"
-#include "plazyExamples/LexerExample.hpp"
-
-#include "plazyExperiments/RecognizeIdent.hpp"
 
 int main(int argc, char* argv[])
 {
-    // for(size_t i=0; i<argc; ++i)
-    // {
-    //     PLAZY_TRACE("argv[{}]: {}", i, argv[i]);
-    // }
+    for(size_t i=0; i<argc; ++i)
+    {
+        PLAZY_TRACE("argv[{}]: {}", i, argv[i]);
+    }
 
-    // loggerExample();
-    // splitExample();
-    // lexerExample();
     plazy::ArgParser argParser;
     argParser.addOption("f", "The source file to be compiled", "string");
     argParser.addOption("o", "The output file", "string", "a.out");
@@ -41,7 +30,7 @@ int main(int argc, char* argv[])
         return 1;
     }
 
-    plazy::Experiment::recognizeIdent(srcFile, outputFile);
+    // plazy::Experiment::recognizeIdent(srcFile, outputFile);
 
     return 0;
 }
