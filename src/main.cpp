@@ -2,14 +2,11 @@
 
 int main(int argc, char* argv[])
 {
-    // for(size_t i=0; i<argc; ++i)
-    // {
-    //     PLAZY_TRACE("argv[{}]: {}", i, argv[i]);
-    // }
+    for(size_t i=0; i<argc; ++i)
+    {
+        PLAZY_TRACE("argv[{}]: {}", i, argv[i]);
+    }
 
-    // loggerExample();
-    // splitExample();
-    // lexerExample();
     plazy::ArgParser argParser;
     argParser.addOption("f", "The source file to be compiled", "string");
     argParser.addOption("o", "The output file", "string", "a.out");

@@ -28,4 +28,4 @@ string(
 )
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY  ${PLAZY_EXPERIMENT_OUTPUT_PATH})
 # Add the experiments executables
-add_executable(Exp01_RecognizeIdent ${SOURCES} "./Experiments/Exp01_RecognizeIdent_main.cpp")
+add_executable(exp01 ${SOURCES} "./Experiments/exp01-recognize-identifier_main.cpp")

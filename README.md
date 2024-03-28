@@ -3,47 +3,50 @@ A PL/0 Compiler Implemented with C++
 
 ## Environments
 
-- System: Ubuntu x64 22/23
-- Compiler: gcc-13, g++-13
-- Other Softwares: cmake>=3.21
-- IDE: vscode (optional, recommended)
+- Compiler: **g++**>=13 (on Linux) or **MSVC**>=19 (on Windows)
+- Other Softwares: **cmake**>=3.21, **make** (on Linux) or **ninja** (on Windows)
+- IDE: **vscode** (optional, recommended)
 
 Check [Env Setup Guide](./docs/Env_Setup_Guide.md) for detailed environment setup.
 
 ## Quick Start
 
-**Before start, please first make sure you have setup the required environments.**
+**Before start, please first make sure you have setup the required [environments](#environments).**
 
 
 Clone the repository with following command:
 
 ```bash
-git clone --single-branch -b main git@github.com:jamesnulliu/PrettyLazy0.git PrettyLazy0-main
+git clone git@github.com:jamesnulliu/PrettyLazy0.git PrettyLazy0
 
-cd PrettyLazy0-main
+cd PrettyLazy0
 ```
 
 To build an executable of PrettyLazy0:
 
 ```bash
-bash scripts/build.sh
+# On Linux:
+bash ./scripts/build-linux.sh Relase
+
+# On Windows:
+pwsh .\scripts\build-windows.ps1 Relase
 ```
 
-To run test case:
+To run test case (replace `<what>` with the case to test):
 
 ```bash
-bash scripts/test.sh
+# On Linux_x64:
+bash ./scripts/test-linuxX64-<what>.sh
+
+# On Windows_x64:
+bash ./scripts/test-windowsX64-<what>.sh
 ```
 
-To add the executable (namely `plazy`) to user PATH variable:
-
-```bash
-export PATH="$PATH:$(pwd)/bin"
-```
+> You can write your own test scrpits based on your need.
 
 ## Contribute
 
-Contribution is welcomed. 
+Feel free to contribute to this project.
 
 If you are not a collaborator, please check [How to Contribute as a Non-Collaborator](./docs/How_to_Contribute_as_a_Non-Collaborator.md) for contribution rules.
 
