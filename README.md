@@ -26,10 +26,10 @@ To build an executable of PrettyLazy0:
 
 ```bash
 # On Linux:
-bash ./scripts/build-linux.sh Relase
+bash ./scripts/build-linux.sh Release
 
 # On Windows:
-pwsh .\scripts\build-windows.ps1 Relase
+pwsh .\scripts\build-windows.ps1 Release
 ```
 
 To run test case (replace `<what>` with the case to test):

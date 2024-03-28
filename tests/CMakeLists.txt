@@ -17,7 +17,6 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY  ${PLAZY_EXAMPLE_OUTPUT_PATH})
 # Add the examples executables
 add_executable(LexerExample ${SOURCES} "./Examples/Lexer_main.cpp")
 add_executable(LoggerExample ${SOURCES} "./Examples/Logger_main.cpp")
-add_executable(SplitExample ${SOURCES} "./Examples/Split_main.cpp")
 
 # Set the output path for the plazy experiments
 string(
