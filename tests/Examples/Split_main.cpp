@@ -9,7 +9,7 @@ inline void printSplitedString(auto&& str)
 }
 
 // [FIXME] Fix plazy::split
-inline void splitExample()
+int main()
 {
     // PLAZY_CRITICAL("********** Split Example Begin **********");
 

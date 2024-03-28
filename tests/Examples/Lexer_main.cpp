@@ -1,12 +1,11 @@
 #pragma once
-#include "plazy/Common/ArgParser.hpp"
-#include "plazy/Common/Exceptions.hpp"
-#include "plazy/Common/Logger.hpp"
-#include "plazy/Core/Lexer.hpp"
 #include <format>
 #include <fstream>
 #include <vector>
-inline void lexerExample()
+
+#include "plazy.hpp"
+
+int main()
 {
         // This class is responsible for parsing command-line arguments
         plazy::ArgParser argParser;
