@@ -5,16 +5,17 @@
 
 #include "plazy.hpp"
 
-inline void recognizeIdent(const std::string& srcFile, const std::string& outputFile)
+using namespace plazy;
+
+void recognizeIdent(const std::string& srcFile, const std::string& outputFile)
 {
-    plazy::Lexer lexer(srcFile);
+    Lexer lexer(srcFile);
     std::vector<std::pair<std::string, size_t>> identifiers;
 
     // Find out all identifiers
-    while (lexer.fileIsOpen()) {
-        plazy::Token token = lexer.nextToken();
-
-        if (token.type == plazy::TokenType::IDENTIFIER) {
+    for (Token token = lexer.nextToken(); token.type != TokenType::ENDOFFILE;
+         token = lexer.nextToken()) {
+        if (token.type == TokenType::IDENTIFIER) {
             auto it = std::ranges::find_if(
                 identifiers, [&token](const auto& pair) { return pair.first == token.value; });
 
@@ -24,12 +25,11 @@ inline void recognizeIdent(const std::string& srcFile, const std::string& output
                 it->second++;
             }
         }
-        // PLAZY_INFO("{}", token.value);
     }
 
     std::ofstream output(outputFile);
     if (!output.is_open()) {
-        throw plazy::FileOpenFailed(outputFile);
+        throw FileOpenFailed(outputFile);
     }
     for (const auto& pair : identifiers) {
         output << std::format("({}: {})\n", pair.first, pair.second);
@@ -39,7 +39,7 @@ inline void recognizeIdent(const std::string& srcFile, const std::string& output
 
 int main(int argc, char* argv[])
 {
-    plazy::ArgParser argParser;
+    ArgParser argParser;
     argParser.addOption("f", "The source file to be compiled", "string");
     argParser.addOption("o", "The output file", "string", "a.out");
     argParser.parse(argc, argv);

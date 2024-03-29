@@ -3,5 +3,5 @@ var b,c;
 begin
     read(b);
     c:=a+b;
-    write(c)
+    write(c);
 end.
