@@ -1,7 +1,21 @@
-# PrettyLazy0
-A PL/0 Compiler Implemented with C++
 
-## Environments
+<div align="center">
+  <div>&nbsp;</div>
+  <div align="center">
+    <b><font size="10" color="Black">PrettyLazy0</font></b>
+  </div>
+  <div>&nbsp;</div>
+  <div align="center">
+    <b><font size="5">A PL/0 Compiler Implemented with C++</font></b>
+  </div>
+  <div>&nbsp;</div>
+
+![Static Badge](https://img.shields.io/badge/PL%2F0-darkgreen?style=plastic&link=https%3A%2F%2Fgithub.com%2Fjamesnulliu%2FPrettyLazy0%2Fblob%2Fmain%2FLICENSE) ![Static Badge](https://img.shields.io/badge/C%2B%2B-20%7C23-blue?style=plastic) ![Static Badge](https://img.shields.io/badge/g%2B%2B-13-blue?style=plastic) ![Static Badge](https://img.shields.io/badge/msvc-19-blue?style=plastic) ![Static Badge](https://img.shields.io/badge/cmake-navy?style=plastic&link=https%3A%2F%2Fgithub.com%2Fjamesnulliu%2FPrettyLazy0%2Fblob%2Fmain%2FLICENSE) ![Static Badge](https://img.shields.io/badge/make-navy?style=plastic&link=https%3A%2F%2Fgithub.com%2Fjamesnulliu%2FPrettyLazy0%2Fblob%2Fmain%2FLICENSE) ![Static Badge](https://img.shields.io/badge/ninja-navy?style=plastic&link=https%3A%2F%2Fgithub.com%2Fjamesnulliu%2FPrettyLazy0%2Fblob%2Fmain%2FLICENSE) [![license - Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-purple?style=plastic)](https://github.com/jamesnulliu/PrettyLazy0/blob/main/LICENSE)
+
+</div>
+
+
+# Environments
 - Linux:
     - Compiler: **g++**>=13
     - Other Softwares: **cmake**>=3.21, **make**
@@ -11,12 +25,9 @@ A PL/0 Compiler Implemented with C++
     - Other Softwares: **cmake**>=3.21, **ninja**
     - IDE: **vscode** (optional, recommended)
 
-Check [Env Setup Guide for Linux](./docs/Env_Setup_Guide_for_Linux.md) or [Env Setup Guide for Windows](./docs/Env_Setup_Guide_for_Windows.md) for detailed environment setup.
+Check [Env Setup Guide for Linux](./docs/Env_Setup_Guide_for_Linux.md) or [Env Setup Guide for Windows](./docs/Env_Setup_Guide_for_Windows.md) for details.
 
-## Quick Start
-
-**Before start, please first make sure you have setup the required [environments](#environments).**
-
+# Quick Start
 
 Clone the repository with following command:
 
@@ -48,7 +59,7 @@ bash ./scripts/test-windowsX64-<what>.sh
 
 > You can write your own test scrpits based on your need.
 
-## Contribute
+# Contribute
 
 Feel free to contribute to this project.
 

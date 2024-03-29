@@ -15,14 +15,15 @@ cd PrettyLazy0
 
 On GitHub [branches page](https://github.com/jamesnulliu/PrettyLazy0/branches), **check if there has been an existing branch that is suitable for your contribution**. 
 
-Let's suppose you want to add support for regular expression. You should first check if there is a remote branch named `feature/regex-support`.  
-
-To list all remote branches, you should change directory to the local repository and run following commands:
+If you want to list all remote branches on your local machine, you should change directory to the local repository and run following commands:
 
 ```bash
 # List all remote branches. 
 git branch -r
 ```
+
+Let's suppose you want to add support for function `i-am-an-example`. You should first check if there is a remote branch named `feature/i-am-an-example`.  
+
 
 💡**Note**: 
 - There are two ways to check for remote branches:
@@ -31,7 +32,7 @@ git branch -r
 
 ### 2.1. If There is a Suitable Remote Branch
 
-If there there has already been a remote branch called `feature/regex-support`, you should then check **if the branch exists on your local machine**.
+If there there has already been a remote branch called `feature/i-am-an-example`, you should then check **if the branch exists on your local machine**.
 
 To list all local branches:
 
@@ -40,29 +41,28 @@ To list all local branches:
 git branch
 ```
 
-If the branch `feature/regex-support` exists on your local machine, you should switch to it and pull the new changes from the remote branch:
+- If branch `feature/i-am-an-example` exists on your local machine, you can switch to it and pull the new changes from the remote branch:
 
-```bash
-# Switch to branch "feature/regex-support".
-git checkout feature/regex-support
-# Pull the new changes from the remote branch.
-git pull --no-rebase
-```
+  ```bash
+  # Switch to branch "feature/i-am-an-example".
+  git switch feature/i-am-an-example
+  # Pull the new changes from the remote branch.
+  git pull origin feature/i-am-an-example --no-rebase
+  ```
 
-Or, if the branch `feature/regex-support` does not exist on your local machine, you should create a local branch from remote one before pulling the new changes:
+- Or, if the remote branch does not exist on your local machine, you should create a local branch named the same as the remote one before pulling new changes:
 
-```bash
-# Fetch the new changes from remote repository.
-git fetch
-# Create a new branch from "feature/regex-support" called "feature/regex-support" and track the remote branch.
-# Note: Leave `origin` unchanged.
-git checkout -b feature/regex-support origin/feature/regex-support
-# Pull the new changes from the remote branch.
-git pull --no-rebase
-```
+  ```bash
+  # Fetch the new changes from remote repository.
+  git fetch
+  # Create a new branch from "feature/i-am-an-example" called "feature/i-am-an-example" and track the remote branch.
+  # Note: Leave `origin` unchanged.
+  git switch -c feature/i-am-an-example origin/feature/i-am-an-example
+  # Pull the new changes from the remote branch.
+  git pull origin feature/i-am-an-example --no-rebase
+  ```
 
 💡**Note**: 
-- `git pull` only pulls the changes to the branch you are currently on. So switch to the branch before pulling.
 - `--no-rebase` forces to merge the incoming and current changes.
 - When your required branch exists in remote repository, there are 2 cases:
     1. If the branch exists on your local machine, switch to it and pull the new changes from remote branch.
@@ -86,31 +86,31 @@ Simply put, branch names should follow these naming scheme:
 git checkout dev
 # Pull the new changes from the remote branch.
 git pull --no-rebase
-# Create a new branch from "dev" called "feature/regex-support".
-git checkout -b feature/regex-support
+# Create a new branch from "dev" called "feature/i-am-an-example".
+git switch -c feature/i-am-an-example
 # Push the new branch to remote repo, namely create a remote branch on GitHub.
-git push origin feature/regex-support:feature/regex-support
+git push origin feature/i-am-an-example:feature/i-am-an-example
 ```
 
-Back to the [branches page](https://github.com/jamesnulliu/PrettyLazy0/branches), you should see a new branch called `feature/regex-support`.
+Back to the [branches page](https://github.com/jamesnulliu/PrettyLazy0/branches), you should see a new branch called `feature/i-am-an-example`.
 
 ## 3. Make Your Contribution
 
 Now you can make your contribution to the project. You can add, modify, or delete files as needed. Once you've made your changes, you should commit them to your local branch and push to remote.
 
 💡**Note**: 
-- All changes should be done on branch `feature/regex-support`. Do not make any changes to branch `dev` or `main` directly.
+- All changes should be done on branch `feature/i-am-an-example`. Do not make any changes to branch `dev` or `main` directly.
 
 ```bash
-git checkout feature/regex-support
+git switch feature/i-am-an-example
 # Add all changes to the staging area.
 git add .
 # Commit the changes with a descriptive message.
 git commit  # or: git commit -m "<message>"
-# In case someone just pushed some changes to "feature/regex-support", pull from remote before your push.
-git pull --no-rebase
+# In case someone just pushed some changes to "feature/i-am-an-example", pull from remote before your push.
+git pull origin feature/i-am-an-example --no-rebase
 # Push the changes to remote repo
-git push origin feature/regex-support
+git push origin feature/i-am-an-example
 ```
 
 💡**Note**: 
@@ -120,16 +120,16 @@ After the conflicts are resolved, commit the changes and push to remote reposito
 
 ```bash
 # Remember to commit changes after resolving conflicts.
-git push origin feature/regex-support
+git push origin feature/i-am-an-example
 ```
 
 ## 4. Create a Pull Request
 
-After pushing changes to remote branch `feature/regex-support`, you should create a **Pull Request (PR)** from `feature/regex-support` to `dev` on GitHub.
+After pushing changes to remote branch `feature/i-am-an-example`, you should create a **Pull Request (PR)** from `feature/i-am-an-example` to `dev` on GitHub.
 
 💡**Note**: 
-- A PR from `feature/regex-support` to `dev` indicates that you want to **merges the changes from `feature/regex-support` to `dev`**.
-- Branch `main` is only for stable releases. Do not create a PR from `feature/regex-support` to `main`.
+- A PR from `feature/i-am-an-example` to `dev` indicates that you want to **merges the changes from `feature/i-am-an-example` to `dev`**.
+- Branch `main` is only for stable releases. Do not create a PR from `feature/i-am-an-example` to `main`.
 
 Please check [Appendix: Create a Pull Request to Merge Changes from `B` to `A`](#create-a-pull-request-to-merge-changes-from-b-to-a) for details.
 
@@ -201,13 +201,13 @@ If GitHub indicates there are conflicts between `B` and `A`,  your PR would not 
 In this case, go back to your local machine and merge `A` to `B`:
 
 ```bash
-git checkout A
+git switch A
 # Pull new changes from remote repository.
 # Since you haven't changed anything on branch "A", this action is safe.
-git pull --no-rebase
+git pull origin A --no-rebase
 
 # "B" is the branch where you have made changes.
-git checkout B
+git switch B
 # Originally, you want to create a PR on GitHub to merge the changes from "B" to "A";
 # But since there are conflicts, you should first merge "A" to "B" on your local machine.
 git merge A
@@ -230,26 +230,26 @@ You should be able to see that the conflicts have been resolved, and the merge c
 
 <!-- ##  Delete a Branch
 
-If the branch `feature/regex-support` is no longer needed, you can delete it:
+If the branch `feature/i-am-an-example` is no longer needed, you can delete it:
 
 ```bash
 # [Warning] Make sure this branch is no longer needed before deleting this branch
-# Delete the branch "feature/regex-support" locally
-git branch -d feature/regex-support
-# Delete the branch "feature/regex-support" on remote repo
-git push origin --delete feature/regex-support
+# Delete the branch "feature/i-am-an-example" locally
+git branch -d feature/i-am-an-example
+# Delete the branch "feature/i-am-an-example" on remote repo
+git push origin --delete feature/i-am-an-example
 ``` -->
 
 ##  Delete a Branch
 
-If branch `feature/regex-support` is no longer needed, you can delete it:
+If branch `feature/i-am-an-example` is no longer needed, you can delete it:
 
 ```bash
 # [Warning] Make sure this branch is no longer needed before deleting this branch
 
 # Delete the branch "feature/omp-#5" locally
-git branch -d feature/regex-support
+git branch -d feature/i-am-an-example
 
 # Delete the branch "feature/omp-#5" on remote repo
-git push origin -d feature/regex-support
+git push origin -d feature/i-am-an-example
 ```
