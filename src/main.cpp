@@ -31,6 +31,7 @@ int main(int argc, char* argv[])
     }
 
     // plazy::Experiment::recognizeIdent(srcFile, outputFile);
+    // plazy::Experiment::analyzeMorphology(srcFile, outputFile);
 
     return 0;
 }

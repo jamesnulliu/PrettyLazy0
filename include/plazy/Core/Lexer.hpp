@@ -40,7 +40,7 @@ public:
      * @throw plazy::NotImplemented If the function is not implemented.
      */
     Token nextToken();
-
+    // [TODO] Remove these two functions. >>>>>>
     bool fileIsOpen() const
     {
         return m_currentChar != PLAZY_EOF;
@@ -49,6 +49,7 @@ public:
     {
         return !fileIsOpen();
     }
+    // <<<<<<
     static inline bool cIsDelimiter(char c)
     {
         return std::ranges::find(DELIMITERS_CH, c) != DELIMITERS_CH.end();
@@ -98,6 +99,7 @@ public:
     {
         return cIsAlpha(c) || cIsDigit(c);
     }
+    static std::string getEncodedType(const plazy::Token& token);
 
 private:
     void nextChar();
@@ -115,6 +117,6 @@ private:
     std::ifstream m_file;
     char m_currentChar = PLAZY_EOF;
     size_t m_line = 1;
-    size_t m_column = 1;
+    size_t m_column = 0;
 };
 }  // namespace plazy

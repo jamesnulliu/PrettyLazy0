@@ -3,9 +3,9 @@ var m, n;
 const var = @\1;
 { 1a , m n }
 
-pRoCeDuRe f;
+pRoCeDuRe 22f;
     Begin
         while n#0 <=++:m do
-            call f;
+            call 22f;
     end;
             

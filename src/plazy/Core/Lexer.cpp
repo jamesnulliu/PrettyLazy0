@@ -77,6 +77,7 @@ void Lexer::skipComment()
 
 Token Lexer::parseNumber()
 {
+    size_t startCol = m_column;
     std::string number;
     do {
         number += m_currentChar;
@@ -86,12 +87,12 @@ Token Lexer::parseNumber()
     Token token{TokenType::NUMBER, number};
 
     if (cIsAlpha(m_currentChar)) {
-        PLAZY_ERROR("[Ln{}, Col{}] Invalid identifier: {}", m_line, m_column, token.value);
         token.type = TokenType::NONE;
         do {
             token.value += m_currentChar;
             nextChar();
         } while (cIsAlphaDigit(m_currentChar));
+        PLAZY_ERROR("[Ln{}, Col{}] Invalid identifier: {}", m_line, startCol, token.value);
     }
 
     return token;
@@ -107,6 +108,7 @@ Token Lexer::parseDelimiter()
 
 Token Lexer::parseOperator()
 {
+    size_t startCol = m_column;
     Token token{TokenType::OPERATOR, std::string(1, m_currentChar)};
     nextChar();
     if (token.value == "<" || token.value == ">") {
@@ -115,11 +117,11 @@ Token Lexer::parseOperator()
             nextChar();
         }
     } else if (token.value == ":") {
-        if (m_currentChar == '=') {
+        if (m_currentChar == '=') {  // :=
             token.value += '=';
             nextChar();
         } else {
-            PLAZY_ERROR("[Ln{}, Col{}] Unknown operator: {}", m_line, m_column, token.value[0]);
+            PLAZY_ERROR("[Ln{}, Col{}] Invalid operator: {}", m_line, startCol, token.value[0]);
             token.type = TokenType::NONE;
         }
     }
@@ -143,15 +145,66 @@ Token Lexer::parseKeywordOrIdentifier()
 Token Lexer::parseUnknownSymbol()
 {
     PLAZY_ERROR("[Ln{}, Col{}] Unknown symbol: {}", m_line, m_column, m_currentChar);
-    std::string str = std::string(1, m_currentChar);
-    // do {
-    //     nextChar();
-    //     if (m_currentChar == PLAZY_EOF) {
-    //         break;
-    //     }
-    //     str += m_currentChar;
-    // } while (cIsAlphaDigit(m_currentChar));
+    Token token{TokenType::NONE, std::string(1, m_currentChar)};
     nextChar();
-    return {TokenType::NONE, str};
+    return token;
+}
+
+std::string Lexer::getEncodedType(const plazy::Token& token)
+{
+    switch (token.type) {
+    case plazy::TokenType::IDENTIFIER: {
+        return "ident";
+    }
+    case plazy::TokenType::NUMBER: {
+        return "number";
+    }
+    case plazy::TokenType::KEYWORD: {
+        return token.value + "sym";
+    }
+    case plazy::TokenType::OPERATOR: {
+        if (token.value == "+") {
+            return "plus";
+        } else if (token.value == "-") {
+            return "minus";
+        } else if (token.value == "*") {
+            return "times";
+        } else if (token.value == "/") {
+            return "slash";
+        } else if (token.value == "=") {
+            return "eql";
+        } else if (token.value == "#") {
+            return "neq";
+        } else if (token.value == "<") {
+            return "lss";
+        } else if (token.value == "<=") {
+            return "leq";
+        } else if (token.value == ">") {
+            return "gtr";
+        } else if (token.value == ">=") {
+            return "geq";
+        } else if (token.value == ":=") {
+            return "becomes";
+        } else {
+            PLAZY_ERROR("Unknown operator: {}", token.value);
+        }
+    }
+    case plazy::TokenType::DELIMITER: {
+        if (token.value == "(") {
+            return "lparen";
+        } else if (token.value == ")") {
+            return "rparen";
+        } else if (token.value == ",") {
+            return "comma";
+        } else if (token.value == ";") {
+            return "semicolon";
+        } else if (token.value == ".") {
+            return "period";
+        } else {
+            PLAZY_ERROR("Unknown delimiter: {}", token.value);
+        }
+    }
+    }
+    return "nul";
 }
 }  // namespace plazy

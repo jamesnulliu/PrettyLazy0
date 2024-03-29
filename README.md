@@ -1,18 +1,27 @@
-# PrettyLazy0
-A PL/0 Compiler Implemented with C++
+<div align="center">
+
+  <img src="./docs/imgs/PrettyLazy0-logo.png" height=100px></img>
+  
+  <em>A PL/0 Compiler Implemented with C++</em>
+
+  ![Static Badge](https://img.shields.io/badge/PL%2F0-purple?style=plastic&link=https%3A%2F%2Fgithub.com%2Fjamesnulliu%2FPrettyLazy0%2Fblob%2Fmain%2FLICENSE) ![Static Badge](https://img.shields.io/badge/C%2B%2B-20%7C23-blue?style=plastic) ![Static Badge](https://img.shields.io/badge/g%2B%2B-13-blue?style=plastic) ![Static Badge](https://img.shields.io/badge/msvc-19-blue?style=plastic) ![Static Badge](https://img.shields.io/badge/cmake-navy?style=plastic&link=https%3A%2F%2Fgithub.com%2Fjamesnulliu%2FPrettyLazy0%2Fblob%2Fmain%2FLICENSE) ![Static Badge](https://img.shields.io/badge/make-navy?style=plastic&link=https%3A%2F%2Fgithub.com%2Fjamesnulliu%2FPrettyLazy0%2Fblob%2Fmain%2FLICENSE) ![Static Badge](https://img.shields.io/badge/ninja-navy?style=plastic&link=https%3A%2F%2Fgithub.com%2Fjamesnulliu%2FPrettyLazy0%2Fblob%2Fmain%2FLICENSE) [![license - Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-darkgreen?style=plastic)](https://github.com/jamesnulliu/PrettyLazy0/blob/main/LICENSE)
+
+</div>
+
 
 ## Environments
+- Linux:
+    - Compiler: **g++**>=13
+    - Other Softwares: **cmake**>=3.21, **make**
+    - IDE: **vscode** (optional, recommended)
+- Windows:
+    - Compiler: **MSVC**>=19
+    - Other Softwares: **cmake**>=3.21, **ninja**
+    - IDE: **vscode** (optional, recommended)
 
-- Compiler: **g++**>=13 (on Linux) or **MSVC**>=19 (on Windows)
-- Other Softwares: **cmake**>=3.21, **make** (on Linux) or **ninja** (on Windows)
-- IDE: **vscode** (optional, recommended)
-
-Check [Env Setup Guide](./docs/Env_Setup_Guide.md) for detailed environment setup.
+Check [Env Setup Guide for Linux](./docs/Env_Setup_Guide_for_Linux.md) or [Env Setup Guide for Windows](./docs/Env_Setup_Guide_for_Windows.md) for details.
 
 ## Quick Start
-
-**Before start, please first make sure you have setup the required [environments](#environments).**
-
 
 Clone the repository with following command:
 
