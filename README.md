@@ -2,12 +2,16 @@
 A PL/0 Compiler Implemented with C++
 
 ## Environments
+- Linux:
+    - Compiler: **g++**>=13
+    - Other Softwares: **cmake**>=3.21, **make**
+    - IDE: **vscode** (optional, recommended)
+- Windows:
+    - Compiler: **MSVC**>=19
+    - Other Softwares: **cmake**>=3.21, **ninja**
+    - IDE: **vscode** (optional, recommended)
 
-- Compiler: **g++**>=13 (on Linux) or **MSVC**>=19 (on Windows)
-- Other Softwares: **cmake**>=3.21, **make** (on Linux) or **ninja** (on Windows)
-- IDE: **vscode** (optional, recommended)
-
-Check [Env Setup Guide](./docs/Env_Setup_Guide.md) for detailed environment setup.
+Check [Env Setup Guide for Linux](./docs/Env_Setup_Guide_for_Linux.md) or [Env Setup Guide for Windows](./docs/Env_Setup_Guide_for_Windows.md) for detailed environment setup.
 
 ## Quick Start
 
