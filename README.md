@@ -1,12 +1,9 @@
-
 <div align="center">
-  <div>&nbsp;</div>
   <div align="center">
-    <b><font size="10" color="Black">PrettyLazy0</font></b>
+    <b><h1>PrettyLazy0</h1></b>
   </div>
-  <div>&nbsp;</div>
   <div align="center">
-    <b><font size="5">A PL/0 Compiler Implemented with C++</font></b>
+    <em>A PL/0 Compiler Implemented with C++</em>
   </div>
   <div>&nbsp;</div>
 
@@ -15,7 +12,7 @@
 </div>
 
 
-# Environments
+## Environments
 - Linux:
     - Compiler: **g++**>=13
     - Other Softwares: **cmake**>=3.21, **make**
@@ -27,7 +24,7 @@
 
 Check [Env Setup Guide for Linux](./docs/Env_Setup_Guide_for_Linux.md) or [Env Setup Guide for Windows](./docs/Env_Setup_Guide_for_Windows.md) for details.
 
-# Quick Start
+## Quick Start
 
 Clone the repository with following command:
 
@@ -59,7 +56,7 @@ bash ./scripts/test-windowsX64-<what>.sh
 
 > You can write your own test scrpits based on your need.
 
-# Contribute
+## Contribute
 
 Feel free to contribute to this project.
 
