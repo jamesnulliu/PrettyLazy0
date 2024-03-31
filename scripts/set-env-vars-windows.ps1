@@ -5,6 +5,7 @@
 # 1. This script is provided as-is and is intended for educational purposes only.
 # 2. Backup your existing environment variables before running this script.
 # 3. Make sure to replace the paths with the actual paths on your system.
+# 4. Comment out some variables if they already exist in the environment.
 $MSVC = 'C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519'
 $WINKIT10_INCLUDE = 'C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0'
 $WINKIT10_LIB = 'C:\Program Files (x86)\Windows Kits\10\Lib\10.0.22621.0'
