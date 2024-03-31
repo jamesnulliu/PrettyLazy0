@@ -1,6 +1,6 @@
 <div align="center">
 
-  <img src="./docs/imgs/PrettyLazy0-logo.png" height=250px></img>
+  <img src="./docs/imgs/PrettyLazy0-logo.png" height=200px></img>
   
   <em>A PL/0 Compiler Implemented with C++</em>
 
