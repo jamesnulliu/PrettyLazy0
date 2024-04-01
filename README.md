@@ -10,14 +10,15 @@
 
 
 ## Environments
-- Linux:
-    - Compiler: **g++**>=13
-    - Other Softwares: **cmake**>=3.21, **make**
-    - IDE: **vscode** (optional, recommended)
-- Windows:
-    - Compiler: **MSVC**>=19
-    - Other Softwares: **cmake**>=3.21, **ninja**
-    - IDE: **vscode** (optional, recommended)
+
+<div align="center">
+
+| OS | Compiler | Build Tools | Make Tools |
+|:--:|:--------:|:-----------:|:----------:|
+| Linux | g++ >= 13 | cmake >= 3.21 | make |
+| Windows | msvc >= 19 | cmake >= 3.21 | ninja |
+
+</div>
 
 Check [Env Setup Guide for Linux](./docs/Env_Setup_Guide_for_Linux.md) or [Env Setup Guide for Windows](./docs/Env_Setup_Guide_for_Windows.md) for details.
 
