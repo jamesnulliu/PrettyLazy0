@@ -41,15 +41,21 @@ public:
      */
     Token nextToken();
     // [TODO] Remove these two functions. >>>>>>
+    /**
+     * @brief [Depricated] Determine whether the file is open.
+     */
     bool fileIsOpen() const
     {
         return m_currentChar != PLAZY_EOF;
     }
+    /**
+     * @brief [Depricated] Determine whether the file is closed.
+     */
     bool fileIsClosed() const
     {
         return !fileIsOpen();
     }
-    // <<<<<<
+    // [TODO] Remove these two functions. <<<<<<
     static inline bool cIsDelimiter(char c)
     {
         return std::ranges::find(DELIMITERS_CH, c) != DELIMITERS_CH.end();
@@ -57,9 +63,9 @@ public:
     /**
      * @brief Whether a character is in operator char set.
      * @see plazy::OPERATORS_CH
-     * 
+     *
      * @param c Character to check.
-     * @return true - If character is an operator.  
+     * @return true - If character is an operator.
      * @return false - If character is not an operator.
      */
     static inline bool cIsOperator(char c)
@@ -68,9 +74,9 @@ public:
     }
     /**
      * @brief Whether a character is a digit.
-     * 
+     *
      * @param c Character to check.
-     * @return true - If character is a digit.  
+     * @return true - If character is a digit.
      * @return false - If character is not a digit.
      */
     static inline bool cIsDigit(char c)
@@ -79,9 +85,9 @@ public:
     }
     /**
      * @brief Whether a character is an alphabet.
-     * 
-     * @param c Character to check.  
-     * @return true - If character is an alphabet.  
+     *
+     * @param c Character to check.
+     * @return true - If character is an alphabet.
      * @return false - If character is not an alphabet.
      */
     static inline bool cIsAlpha(char c)
@@ -90,9 +96,9 @@ public:
     }
     /**
      * @brief Whether a character is an alphabet or a digit.
-     * 
-     * @param c 
-     * @return true - If character is an alphabet or a digit.  
+     *
+     * @param c
+     * @return true - If character is an alphabet or a digit.
      * @return false - If character is not an alphabet or a digit.
      */
     static inline bool cIsAlphaDigit(char c)
@@ -110,8 +116,9 @@ private:
     Token parseOperator();
     Token parseKeywordOrIdentifier();
     Token parseUnknownSymbol();
-    // [ToDo]
+    // [ToDo] >>>>>
     // Token parseString();
+    // [ToDo] <<<<<
 
 private:
     std::ifstream m_file;

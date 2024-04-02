@@ -1,7 +1,7 @@
 # This script sets the environment variables for the Visual Studio 2022 Community Edition
 # and the Windows 10 SDK. The script is intended to be run in a PowerShell terminal.
 
-# >>>>>> [WARNING] >>>>>>
+# [WARNING] >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 # 1. This script is provided as-is and is intended for educational purposes only.
 # 2. Backup your existing environment variables before running this script.
 # 3. Make sure to replace the paths with the actual paths on your system.
@@ -12,7 +12,7 @@ $WINKIT10_LIB = 'C:\Program Files (x86)\Windows Kits\10\Lib\10.0.22621.0'
 $WINKIT10_BIN = 'C:\Program Files (x86)\Windows Kits\10\bin\10.0.22621.0'
 $CMAKE_BIN = 'C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin'
 $NINJA_BIN = 'C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\Ninja'
-# <<<<<< [WARNING] <<<<<<
+# [WARNING] <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 # Ask the user to confirm before proceeding
 Write-Host "Please check the paths in the script before running it."
