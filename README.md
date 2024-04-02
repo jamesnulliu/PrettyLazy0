@@ -39,7 +39,7 @@ To build an executable of PrettyLazy0:
 bash ./scripts/build-linux.sh Release
 
 # On Windows:
-pwsh .\scripts\build-windows.ps1 Release
+.\scripts\build-windows.ps1 Release
 ```
 
 To run test case (replace `<what>` with the case to test):
@@ -49,7 +49,7 @@ To run test case (replace `<what>` with the case to test):
 bash ./scripts/test-linuxX64-<what>.sh
 
 # On Windows_x64:
-bash ./scripts/test-windowsX64-<what>.sh
+.\scripts\test-windowsX64-<what>.ps1
 ```
 
 > You can write your own test scrpits based on your need.
