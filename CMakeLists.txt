@@ -6,9 +6,6 @@ cmake_minimum_required(VERSION 3.21)
 # Project name
 project(PrettyLazy0 VERSION 0.1)
 
-# Whether to build Yutils as a shared library
-option(SHARED_YUTILS "Build Yutils as a shared library" OFF)
-
 # Set C++ standard to C++23
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -30,29 +27,22 @@ else()
     set(CMAKE_CXX_FLAGS_DEBUG "-g")
 endif()
 
-# [Subdirectories] >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-# Yutils Library
+# [SUBDIRECTORIES] >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+# Yutils Library -----------------------------------------------------------------------------------
+option(SHARED_YUTILS "Build Yutils as a shared library" OFF)
 if (SHARED_YUTILS)
-    # Store the original value of BUILD_SHARED_LIBS
-    set(ORIGINAL_BUILD_SHARED_LIBS ${BUILD_SHARED_LIBS})
     # Set BUILD_SHARED_LIBS to ON to build Yutils as a shared library
     set(BUILD_SHARED_LIBS ON CACHE BOOL "Build shared libs for Yutils" FORCE)
     # Build Yutils as a shared library
-    add_subdirectory(vendor/Yutils)
-    # Restore the original value of BUILD_SHARED_LIBS
-    set(BUILD_SHARED_LIBS ${ORIGINAL_BUILD_SHARED_LIBS} CACHE BOOL "Restore oritinal value")
+    add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/vendor/Yutils)
 else()
-    # Store the original value of BUILD_SHARED_LIBS
-    set(ORIGINAL_BUILD_SHARED_LIBS ${BUILD_SHARED_LIBS})
     # Set BUILD_SHARED_LIBS to OFF to build Yutils as a shared library
-    set(BUILD_SHARED_LIBS OFF CACHE BOOL "Build shared libs for Yutils" FORCE)
+    set(BUILD_SHARED_LIBS OFF CACHE BOOL "Build static libs for Yutils" FORCE)
     # Build Yutils as a static library
     add_subdirectory(vendor/Yutils)
-    # Restore the original value of BUILD_SHARED_LIBS
-    set(BUILD_SHARED_LIBS ${ORIGINAL_BUILD_SHARED_LIBS} CACHE BOOL "Restore oritinal value")
 endif()
-# src
-add_subdirectory(src)
-# tests
-add_subdirectory(tests)
-# [Subdirectories] <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+# src ----------------------------------------------------------------------------------------------
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src)
+# tests --------------------------------------------------------------------------------------------
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/tests)
+# [SUBDIRECTORIES] <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
