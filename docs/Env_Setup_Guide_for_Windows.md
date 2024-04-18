@@ -20,8 +20,7 @@ Setting the environment variables is relatively harder on Windows than on Linux.
 
 To make your life easier, we provide a script to set the environment variables for you. You can find the script in the `scripts` folder.
 
-**Before runing the script, make sure to check the content and modify the paths to match your system.**
-
 ```bash
-pwsh .\scripts\set-env-vars-windows.ps1
+# [Warning] Make sure to modify the paths in the script before running it.
+.\scripts\set-env-vars-windows.ps1
 ```

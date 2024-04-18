@@ -10,14 +10,15 @@
 
 
 ## Environments
-- Linux:
-    - Compiler: **g++**>=13
-    - Other Softwares: **cmake**>=3.21, **make**
-    - IDE: **vscode** (optional, recommended)
-- Windows:
-    - Compiler: **MSVC**>=19
-    - Other Softwares: **cmake**>=3.21, **ninja**
-    - IDE: **vscode** (optional, recommended)
+
+<div align="center">
+
+| OS | Compiler | Build Tools | Make Tools |
+|:--:|:--------:|:-----------:|:----------:|
+| Linux | g++ >= 13 | cmake >= 3.21 | make |
+| Windows | msvc >= 19 | cmake >= 3.21 | ninja |
+
+</div>
 
 Check [Env Setup Guide for Linux](./docs/Env_Setup_Guide_for_Linux.md) or [Env Setup Guide for Windows](./docs/Env_Setup_Guide_for_Windows.md) for details.
 
@@ -35,23 +36,11 @@ To build an executable of PrettyLazy0:
 
 ```bash
 # On Linux:
-bash ./scripts/build-linux.sh Release
+bash ./scripts/build.sh Release
 
 # On Windows:
-pwsh .\scripts\build-windows.ps1 Release
+.\scripts\build.ps1 Release
 ```
-
-To run test case (replace `<what>` with the case to test):
-
-```bash
-# On Linux_x64:
-bash ./scripts/test-linuxX64-<what>.sh
-
-# On Windows_x64:
-bash ./scripts/test-windowsX64-<what>.sh
-```
-
-> You can write your own test scrpits based on your need.
 
 ## Contribute
 

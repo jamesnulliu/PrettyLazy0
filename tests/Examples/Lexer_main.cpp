@@ -3,31 +3,32 @@
 #include <vector>
 
 #include "plazy.hpp"
+#include "Yutils/ArgParser.hpp"
 
 int main()
 {
         // This class is responsible for parsing command-line arguments
-        plazy::ArgParser argParser;
+        yutils::ArgParser argParser;
         // This line specifies the location of the file to be processed
         argParser.addOption("f", "The source file to be compiled", "string",
-                            "data/exp01-recognize-identifier/case01.pl0");
+                            "tests/data/exp01-recognize-identifier/case01.pl0");
         // This line specifies the location of the file to be output
-        argParser.addOption("o", "The output file", "string", "bin/LexerExample.out");
+        argParser.addOption("o", "The output file", "string", "tests/data/results/LexerExample.out");
         std::string srcFile, outputFile;
         // Check if the input and output files have been added to argParser
         auto value = argParser.get<std::string>("f");
         if (value) {
-            PLAZY_TRACE("Source file: {}", value.value());
+            YTRACE("Source file: {}", value.value());
             srcFile = value.value();
         } else {
-            PLAZY_ERROR("Source file not provided");
+            YERROR("Source file not provided");
         }
         value = argParser.get<std::string>("o");
         if (value) {
-            PLAZY_TRACE("Output file: {}", value.value());
+            YTRACE("Output file: {}", value.value());
             outputFile = value.value();
         } else {
-            PLAZY_ERROR("Output file not provided");
+            YERROR("Output file not provided");
         }
         plazy::Lexer lexer(srcFile);
         // Lexer can find all the keywords operators, delimiters, numbers, and maybe a string of identifiers in the statement
@@ -119,7 +120,7 @@ int main()
             {
                 if(token.type != plazy::TokenType::ENDOFFILE)
                 {
-                    PLAZY_ERROR("Here the token.type must be of plazy::TokenType::ENDOFFILE");
+                    YERROR("Here the token.type must be of plazy::TokenType::ENDOFFILE");
                 }
             }
         }

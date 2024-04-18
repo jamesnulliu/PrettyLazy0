@@ -1,7 +1,6 @@
 #include "plazy/Common/Exceptions.hpp"
-#include "plazy/Common/Logger.hpp"
-
 #include "plazy/Core/Lexer.hpp"
+#include "Yutils/Logger.hpp"
 
 #include <algorithm>
 
@@ -92,7 +91,7 @@ Token Lexer::parseNumber()
             token.value += m_currentChar;
             nextChar();
         } while (cIsAlphaDigit(m_currentChar));
-        PLAZY_ERROR("[Ln{}, Col{}] Invalid identifier: {}", m_line, startCol, token.value);
+        YERROR("[Ln{}, Col{}] Invalid identifier: {}", m_line, startCol, token.value);
     }
 
     return token;
@@ -121,7 +120,7 @@ Token Lexer::parseOperator()
             token.value += '=';
             nextChar();
         } else {
-            PLAZY_ERROR("[Ln{}, Col{}] Invalid operator: {}", m_line, startCol, token.value[0]);
+            YERROR("[Ln{}, Col{}] Invalid operator: {}", m_line, startCol, token.value[0]);
             token.type = TokenType::NONE;
         }
     }
@@ -144,7 +143,7 @@ Token Lexer::parseKeywordOrIdentifier()
 
 Token Lexer::parseUnknownSymbol()
 {
-    PLAZY_ERROR("[Ln{}, Col{}] Unknown symbol: {}", m_line, m_column, m_currentChar);
+    YERROR("[Ln{}, Col{}] Unknown symbol: {}", m_line, m_column, m_currentChar);
     Token token{TokenType::NONE, std::string(1, m_currentChar)};
     nextChar();
     return token;
@@ -186,7 +185,7 @@ std::string Lexer::getEncodedType(const plazy::Token& token)
         } else if (token.value == ":=") {
             return "becomes";
         } else {
-            PLAZY_ERROR("Unknown operator: {}", token.value);
+            YERROR("Unknown operator: {}", token.value);
         }
     }
     case plazy::TokenType::DELIMITER: {
@@ -201,7 +200,7 @@ std::string Lexer::getEncodedType(const plazy::Token& token)
         } else if (token.value == ".") {
             return "period";
         } else {
-            PLAZY_ERROR("Unknown delimiter: {}", token.value);
+            YERROR("Unknown delimiter: {}", token.value);
         }
     }
     }
