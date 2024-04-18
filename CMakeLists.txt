@@ -1,3 +1,5 @@
+# @Path: PrettyLazy0/CMakeLists.txt
+
 # Minimum required CMake version
 cmake_minimum_required(VERSION 3.21)
 
@@ -25,6 +27,22 @@ else()
     set(CMAKE_CXX_FLAGS_DEBUG "-g")
 endif()
 
-add_subdirectory(src)
-add_subdirectory(tests)
-
+# [SUBDIRECTORIES] >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+# Yutils Library -----------------------------------------------------------------------------------
+option(SHARED_YUTILS "Build Yutils as a shared library" OFF)
+if (SHARED_YUTILS)
+    # Set BUILD_SHARED_LIBS to ON to build Yutils as a shared library
+    set(BUILD_SHARED_LIBS ON CACHE BOOL "Build shared libs for Yutils" FORCE)
+    # Build Yutils as a shared library
+    add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/vendor/Yutils)
+else()
+    # Set BUILD_SHARED_LIBS to OFF to build Yutils as a shared library
+    set(BUILD_SHARED_LIBS OFF CACHE BOOL "Build static libs for Yutils" FORCE)
+    # Build Yutils as a static library
+    add_subdirectory(vendor/Yutils)
+endif()
+# src ----------------------------------------------------------------------------------------------
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src)
+# tests --------------------------------------------------------------------------------------------
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/tests)
+# [SUBDIRECTORIES] <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
