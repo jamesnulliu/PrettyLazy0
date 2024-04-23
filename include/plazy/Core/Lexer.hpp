@@ -1,29 +1,14 @@
 #pragma once
-#include "plazy/Common/PreDefined.hpp"
 #include <array>
 #include <cstdint>
 #include <fstream>
 #include <string_view>
 
+#include "plazy/Common/PreDefined.hpp"
+#include "plazy/Core/Token.hpp"
+
 namespace plazy
 {
-enum class TokenType : uint16_t
-{
-    NONE,
-    KEYWORD,
-    OPERATOR,
-    DELIMITER,
-    IDENTIFIER,
-    NUMBER,
-    ENDOFFILE
-};
-
-struct Token
-{
-    TokenType type;
-    std::string value;
-};
-
 /**
  * @brief PrettyLazy Lexer for PL/0 language
  */
@@ -105,6 +90,7 @@ public:
     {
         return cIsAlpha(c) || cIsDigit(c);
     }
+
     static std::string getEncodedType(const plazy::Token& token);
 
 private:

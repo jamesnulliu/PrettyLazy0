@@ -51,3 +51,4 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY  ${PLAZY_EXPERIMENT_OUTPUT_PATH})
 # Add the experiments executables
 add_executable(exp01 ${SOURCES} "./Experiments/exp01-recognize-identifier_main.cpp")
 add_executable(exp02 ${SOURCES} "./Experiments/exp02-analyze-morphology_main.cpp")
+add_executable(exp03 ${SOURCES} "./Experiments/exp03-grammar-analyze_main.cpp")

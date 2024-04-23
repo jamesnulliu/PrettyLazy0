@@ -8,22 +8,28 @@
 
 #include "plazy.hpp"
 
-using namespace plazy;
-
-void analyzeMorphology(const std::string& srcFile, const std::string& outputFile)
+void analyzeGrammar(std::string srcPath, std::string tokenOutputPath)
 {
-    Lexer lexer(srcFile);
+    plazy::Lexer lexer(srcPath);
+    std::vector<plazy::Token> tokens;
 
-    std::ofstream output(outputFile);
-    if (!output.is_open()) {
-        throw FileOpenFailed(outputFile);
+    std::ofstream tokenOut(tokenOutputPath);
+    if (!tokenOut.is_open()) {
+        throw plazy::FileOpenFailed(tokenOutputPath);
     }
-    for (Token token = lexer.nextToken(); token.type != TokenType::ENDOFFILE;
+
+    for (plazy::Token token = lexer.nextToken(); token.type != plazy::TokenType::ENDOFFILE;
          token = lexer.nextToken()) {
-        std::string encodedType = Lexer::getEncodedType(token);
-        output << std::format("({}, {})\n", encodedType, token.value);
+        tokens.push_back(token);
     }
-    output.close();
+
+    plazy::Parser parser(tokens);
+    try{
+        parser.parseProgram();
+    }catch(const plazy::Exception& e){
+        YERROR("{}", e.what());
+        return;
+    }
 }
 
 int main(int argc, char* argv[])
@@ -42,5 +48,5 @@ int main(int argc, char* argv[])
     YTRACE("Output file: {}", *value);
     outputFile = *value;
 
-    analyzeMorphology(srcFile, outputFile);
+    analyzeGrammar(srcFile, outputFile);
 }

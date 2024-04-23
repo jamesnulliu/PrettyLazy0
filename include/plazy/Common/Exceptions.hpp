@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 
+
 namespace plazy
 {
 
@@ -112,6 +113,21 @@ public:
     InvalidType(const std::string& type)
     {
         m_msg = "Invalid type: " + type;
+    }
+
+private:
+    virtual const char* what() const noexcept override
+    {
+        return m_msg.c_str();
+    }
+};
+
+class RuntimeError : public Exception
+{
+public:
+    RuntimeError(const std::string& msg)
+    {
+        m_msg = "Runtime error: " + msg;
     }
 
 private:
