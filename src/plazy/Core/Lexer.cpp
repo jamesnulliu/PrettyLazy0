@@ -1,6 +1,7 @@
 #include "plazy/Common/Exceptions.hpp"
 #include "plazy/Core/Lexer.hpp"
-#include "Yutils/Logger.hpp"
+
+#include "plazy.hpp"
 
 #include <algorithm>
 

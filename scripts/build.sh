@@ -1,6 +1,7 @@
 #!/bin/bash
 
-build_type=Release
+build_type=$1
+
 shared_yutils=OFF
 
 PROJECT_ROOT_DIR=$(pwd)

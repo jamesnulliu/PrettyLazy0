@@ -3,7 +3,6 @@
 #include <fstream>
 #include <string>
 #include <vector>
-
 #include <Yutils/ArgParser.hpp>
 
 #include "plazy.hpp"
