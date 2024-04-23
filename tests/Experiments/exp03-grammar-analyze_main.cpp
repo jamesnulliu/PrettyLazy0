@@ -21,12 +21,14 @@ void analyzeGrammar(std::string srcPath, std::string tokenOutputPath)
     for (plazy::Token token = lexer.nextToken(); token.type != plazy::TokenType::ENDOFFILE;
          token = lexer.nextToken()) {
         tokens.push_back(token);
+        tokenOut << std::format("({}:{}, {})\n", plazy::TokenType2Str(token),
+                                plazy::Lexer::getEncodedType(token), token.value);
     }
 
     plazy::Parser parser(tokens);
-    try{
+    try {
         parser.parseProgram();
-    }catch(const plazy::Exception& e){
+    } catch (const plazy::Exception& e) {
         YERROR("{}", e.what());
         return;
     }
@@ -39,14 +41,14 @@ int main(int argc, char* argv[])
     argParser.addOption("o", "The output file", "string", "a.out");
     argParser.parse(argc, argv);
 
-    std::string srcFile, outputFile;
+    std::string srcPath, tokenOutputPath;
     auto value = argParser.get<std::string>("f");
     YTRACE("Source file: {}", *value);
-    srcFile = *value;
+    srcPath = *value;
 
     value = argParser.get<std::string>("o");
     YTRACE("Output file: {}", *value);
-    outputFile = *value;
+    tokenOutputPath = *value;
 
-    analyzeGrammar(srcFile, outputFile);
+    analyzeGrammar(srcPath, tokenOutputPath);
 }
