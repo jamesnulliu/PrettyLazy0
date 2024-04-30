@@ -31,7 +31,7 @@ public:
      */
     bool fileIsOpen() const
     {
-        return m_currentChar != PLAZY_EOF;
+        return m_curChar != PLAZY_EOF;
     }
     /**
      * @brief [Depricated] Determine whether the file is closed.
@@ -108,8 +108,8 @@ private:
 
 private:
     std::ifstream m_file;
-    char m_currentChar = PLAZY_EOF;
-    size_t m_line = 1;
-    size_t m_column = 0;
+    char m_curChar = PLAZY_EOF;
+    std::uint32_t m_curLine = 1;
+    std::uint32_t m_curCol = 0;
 };
 }  // namespace plazy

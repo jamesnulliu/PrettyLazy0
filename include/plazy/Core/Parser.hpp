@@ -32,7 +32,7 @@ public:
 
     /**
      * @brief Parse the block.
-     *        <block> ::= begin <statement> {; <statement>} end
+     *        <block> ::= begin <statement>; {<statement>;} end
      */
     void block();
 
@@ -93,6 +93,11 @@ private:
     const Token& curToken() const
     {
         return m_tokens.at(m_curTokenIdx);
+    }
+
+    const Token& lastToken() const 
+    {
+        return m_tokens.at(m_curTokenIdx - 1);
     }
 
     /**
@@ -166,8 +171,6 @@ private:
      *
      * @return <true> - If the current token matches the given type and value.
      *         <false> - If the current token does not match the given type and value.
-     *
-     * @note `advance()` would be called if the current token matches the given type and value.
      */
     template <typename... Args>
     bool match(TokenType type, const std::string& value, Args... values)

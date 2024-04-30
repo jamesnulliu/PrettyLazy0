@@ -17,11 +17,16 @@ void analyzeGrammar(std::string srcPath, std::string tokenOutputPath)
         throw plazy::FileOpenFailed(tokenOutputPath);
     }
 
-    for (plazy::Token token = lexer.nextToken(); token.type != plazy::TokenType::ENDOFFILE;
-         token = lexer.nextToken()) {
-        tokens.push_back(token);
-        tokenOut << std::format("({}:{}, {})\n", plazy::TokenType2Str(token),
-                                plazy::Lexer::getEncodedType(token), token.value);
+    try{
+        for (plazy::Token token = lexer.nextToken(); token.type != plazy::TokenType::ENDOFFILE;
+            token = lexer.nextToken()) {
+            tokens.push_back(token);
+            tokenOut << std::format("({}:{}, {})\n", plazy::TokenType2Str(token),
+                                    plazy::Lexer::getEncodedType(token), token.value);
+        }
+    } catch (const plazy::Exception& e) {
+        YERROR("{}", e.what());
+        return;
     }
 
     plazy::Parser parser(tokens);
@@ -37,7 +42,7 @@ int main(int argc, char* argv[])
 {
     yutils::ArgParser argParser;
     argParser.addOption("f", "The source file to be compiled", "string");
-    argParser.addOption("o", "The output file", "string", "a.out");
+    argParser.addOption("o", "The output file", "string", "tests/data/results/tokens.out");
     argParser.parse(argc, argv);
 
     std::string srcPath, tokenOutputPath;

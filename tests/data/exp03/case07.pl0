@@ -1,0 +1,13 @@
+const a=1, b=7;
+var result;
+
+begin
+    if a >= b then
+        result := +a - 1 / b;
+
+    if a < 2+3 then
+        result := -b;
+    
+    while a # 100 
+        a := a + b * 3;
+end.
