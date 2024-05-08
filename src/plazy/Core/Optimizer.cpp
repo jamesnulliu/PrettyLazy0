@@ -26,7 +26,7 @@ void Optimizer::buildDAG(std::vector<Quadruple>& quads)
         }
         // Else if `nodeY` does not exist (cannot be mapped from `y`):
         else {
-            // Create a new node for `y` and the map from `y` to `nodeY`.
+            // Create a new node for `y` and map from `y` to `nodeY`.
             nodeY = std::make_shared<Node>();
             nodeY->varNames.push_back(y);
             nodeY->value = y;
@@ -39,13 +39,13 @@ void Optimizer::buildDAG(std::vector<Quadruple>& quads)
         // Skip if `z` is empty.
         if (!z.empty()) {
             // If `nodeZ` exists (can be mapped from `z`):
-            if (m_varName2nodePtr.contains(z)) {
+            if (isNodeExists(z)) {
                 // Get `nodeZ` directly from the map.
                 nodeZ = m_varName2nodePtr[z];
             }
             // Else if `nodeZ` does not exist (cannot be mapped from `z`):
             else {
-                // Create a new node for `z` and the map from `z` to `nodeZ`.
+                // Create a new node for `z` and map from `z` to `nodeZ`.
                 nodeZ = std::make_shared<Node>();
                 nodeZ->varNames.push_back(z);
                 nodeZ->value = z;
@@ -55,7 +55,9 @@ void Optimizer::buildDAG(std::vector<Quadruple>& quads)
             }
         }
 
+        // `nodeN` is the key node that marks this operation (i.e., current quadruple).
         NodePtr nodeN = nullptr;
+
         // ------ Case1: op, y, z, x ------
         if (!y.empty() && !z.empty()) {
             // If `y` and `z` are both constants
@@ -78,6 +80,7 @@ void Optimizer::buildDAG(std::vector<Quadruple>& quads)
                 }
 
                 // If `nodeY` (or `nodeZ`) is newly created, erase the map.
+                // After erase, `isNodeExists(y)` (or `isNodeExists(z)`) would return false.
                 if (isNodeYNew) {
                     m_varName2nodePtr.erase(y);
                 }
@@ -113,18 +116,22 @@ void Optimizer::buildDAG(std::vector<Quadruple>& quads)
                 }
             }
         }
+        
         // ------ Case2: op, y, _, x ------
         else if (z.empty() && op != "=") {
             throw RuntimeError("Unary operation is not supported.");
         }
+
         // ------ Case3: = , y, _, x ------
         else if (z.empty() && op == "=") {
             if (isNodeYNew) {
+                // Fuck off, constant shit.
                 m_varName2nodePtr.erase(y);
                 nodeY->varNames.pop_back();
             }
             nodeN = nodeY;
         }
+
         // ------ Unknown case ------
         else {
             throw RuntimeError("Unknown case for building DAG.");
@@ -137,9 +144,8 @@ void Optimizer::buildDAG(std::vector<Quadruple>& quads)
         if (nodeX_it_map != m_varName2nodePtr.end()) {
             NodePtr nodeX = nodeX_it_map->second;
             auto varNameX_it = std::ranges::find(nodeX->varNames, x);
-            // @note 
-            //   Check for iterators's validation is skipped because there must be
-            //   a map from `x` to `nodeX` and `x` must be in `nodeX->varNames`.
+            // @note Check for iterators's validation is skipped because there must be
+            //       a map from `x` to `nodeX` and `x` must be in `nodeX->varNames`.
             nodeX->varNames.erase(varNameX_it);
         }
 
