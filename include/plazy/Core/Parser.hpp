@@ -1,5 +1,5 @@
 #pragma once
-#include "plazy/Core/Token.hpp"
+#include "plazy/Common/PreDefined.hpp"
 #include <vector>
 
 namespace plazy

@@ -1,4 +1,4 @@
-#include "plazy/Core/Token.hpp"
+#include "plazy/Common/PreDefined.hpp"
 #include "plazy/Common/Exceptions.hpp"
 
 namespace plazy

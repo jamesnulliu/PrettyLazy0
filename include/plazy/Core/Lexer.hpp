@@ -5,7 +5,6 @@
 #include <string_view>
 
 #include "plazy/Common/PreDefined.hpp"
-#include "plazy/Core/Token.hpp"
 
 namespace plazy
 {
