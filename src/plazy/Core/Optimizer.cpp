@@ -116,7 +116,7 @@ void Optimizer::buildDAG(std::vector<Quadruple>& quads)
                 }
             }
         }
-        
+
         // ------ Case2: op, y, _, x ------
         else if (z.empty() && op != "=") {
             throw RuntimeError("Unary operation is not supported.");
@@ -141,11 +141,9 @@ void Optimizer::buildDAG(std::vector<Quadruple>& quads)
 
         // Try to find where `x` is in map
         auto nodeX_it_map = m_varName2nodePtr.find(x);
-        if (nodeX_it_map != m_varName2nodePtr.end()) {
+        if (nodeX_it_map != m_varName2nodePtr.end() && nodeX_it_map->second->varNames.size() > 1) {
             NodePtr nodeX = nodeX_it_map->second;
             auto varNameX_it = std::ranges::find(nodeX->varNames, x);
-            // @note Check for iterators's validation is skipped because there must be
-            //       a map from `x` to `nodeX` and `x` must be in `nodeX->varNames`.
             nodeX->varNames.erase(varNameX_it);
         }
 
