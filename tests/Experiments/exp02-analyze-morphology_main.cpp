@@ -1,10 +1,13 @@
-#include "plazy.hpp"
 #include <algorithm>
+#include <format>
 #include <fstream>
 #include <string>
 #include <vector>
 #include <format>
-#include "Yutils/ArgParser.hpp"
+
+#include <Yutils/ArgParser.hpp>
+
+#include "plazy.hpp"
 
 using namespace plazy;
 

@@ -36,9 +36,6 @@ endif()
 # Set the output path for the plazy examples
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY  ${PLAZY_EXAMPLE_OUTPUT_PATH})
 
-# Add the examples executables
-add_executable(LexerExample ${SOURCES} "./Examples/Lexer_main.cpp")
-
 # Set the output path for the plazy experiments
 string(
     CONCAT PLAZY_EXPERIMENT_OUTPUT_PATH
@@ -51,3 +48,6 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY  ${PLAZY_EXPERIMENT_OUTPUT_PATH})
 # Add the experiments executables
 add_executable(exp01 ${SOURCES} "./Experiments/exp01-recognize-identifier_main.cpp")
 add_executable(exp02 ${SOURCES} "./Experiments/exp02-analyze-morphology_main.cpp")
+add_executable(exp03 ${SOURCES} "./Experiments/exp03-grammar-analyze_main.cpp")
+add_executable(exp04 ${SOURCES} "./Experiments/exp04-analyze-semantics_main.cpp")
+add_executable(exp06 ${SOURCES} "./Experiments/exp06-optimize_main.cpp")
