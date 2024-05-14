@@ -1,6 +1,7 @@
-#include "plazy/Common/Exceptions.hpp"
 #include "plazy/Core/Lexer.hpp"
-#include "Yutils/Logger.hpp"
+#include "plazy/Common/Exceptions.hpp"
+
+#include "plazy.hpp"
 
 #include <algorithm>
 
@@ -25,17 +26,17 @@ Token Lexer::nextToken()
     skipWhitespace();
     skipComment();
 
-    if (cIsDelimiter(m_currentChar)) {
+    if (cIsDelimiter(m_curChar)) {
         return parseDelimiter();
-    } else if (cIsOperator(m_currentChar)) {
+    } else if (cIsOperator(m_curChar)) {
         return parseOperator();
-    } else if (cIsDigit(m_currentChar)) {
+    } else if (cIsDigit(m_curChar)) {
         return parseNumber();
-    } else if (cIsAlpha(m_currentChar)) {
+    } else if (cIsAlpha(m_curChar)) {
         return parseKeywordOrIdentifier();
-    } else if (m_currentChar == PLAZY_EOF) {
+    } else if (m_curChar == PLAZY_EOF) {
         return {TokenType::ENDOFFILE, ""};
-    } else if (m_currentChar == '"') {
+    } else if (m_curChar == '"') {
         throw NotImplemented("String parsing is not implemented yet");
     } else {
         return parseUnknownSymbol();
@@ -44,30 +45,30 @@ Token Lexer::nextToken()
 
 void Lexer::nextChar()
 {
-    if (m_currentChar == '\n' || m_currentChar == '\r') {
-        ++m_line;
-        m_column = 1;
+    if (m_curChar == '\n' || m_curChar == '\r') {
+        ++m_curLine;
+        m_curCol = 1;
     } else {
-        ++m_column;
+        ++m_curCol;
     }
-    m_currentChar = m_file.get();
+    m_curChar = m_file.get();
 }
 
 void Lexer::skipWhitespace()
 {
-    while (std::isspace(m_currentChar)) {
+    while (std::isspace(m_curChar)) {
         nextChar();
     }
 }
 
 void Lexer::skipComment()
 {
-    if (m_currentChar == '{') {
+    if (m_curChar == '{') {
         do {
             nextChar();
-        } while (m_currentChar != '}' && m_currentChar != PLAZY_EOF);
+        } while (m_curChar != '}' && m_curChar != PLAZY_EOF);
 
-        if (m_currentChar == '}') {
+        if (m_curChar == '}') {
             nextChar();
         }
     }
@@ -76,22 +77,22 @@ void Lexer::skipComment()
 
 Token Lexer::parseNumber()
 {
-    size_t startCol = m_column;
+    size_t startCol = m_curCol;
     std::string number;
     do {
-        number += m_currentChar;
+        number += m_curChar;
         nextChar();
-    } while (cIsDigit(m_currentChar));
+    } while (cIsDigit(m_curChar));
 
     Token token{TokenType::NUMBER, number};
 
-    if (cIsAlpha(m_currentChar)) {
+    if (cIsAlpha(m_curChar)) {
         token.type = TokenType::NONE;
         do {
-            token.value += m_currentChar;
+            token.value += m_curChar;
             nextChar();
-        } while (cIsAlphaDigit(m_currentChar));
-        YERROR("[Ln{}, Col{}] Invalid identifier: {}", m_line, startCol, token.value);
+        } while (cIsAlphaDigit(m_curChar));
+        YERROR("[L{},C{}] Invalid identifier: {}", m_curLine, startCol, token.value);
     }
 
     return token;
@@ -99,28 +100,28 @@ Token Lexer::parseNumber()
 
 Token Lexer::parseDelimiter()
 {
-    std::string delimiter = std::string(1, m_currentChar);
-    Token token = {TokenType::DELIMITER, delimiter};
+    std::string delimiter = std::string(1, m_curChar);
+    Token token = {TokenType::DELIMITER, delimiter, m_curLine, m_curCol};
     nextChar();
     return token;
 }
 
 Token Lexer::parseOperator()
 {
-    size_t startCol = m_column;
-    Token token{TokenType::OPERATOR, std::string(1, m_currentChar)};
+    size_t startCol = m_curCol;
+    Token token{TokenType::OPERATOR, std::string(1, m_curChar), m_curLine, m_curCol};
     nextChar();
     if (token.value == "<" || token.value == ">") {
-        if (m_currentChar == '=') {  // >=, <=
+        if (m_curChar == '=') {  // >=, <=
             token.value += '=';
             nextChar();
         }
     } else if (token.value == ":") {
-        if (m_currentChar == '=') {  // :=
+        if (m_curChar == '=') {  // :=
             token.value += '=';
             nextChar();
         } else {
-            YERROR("[Ln{}, Col{}] Invalid operator: {}", m_line, startCol, token.value[0]);
+            YERROR("[L{},C{}] Invalid operator: {}", m_curLine, startCol, token.value[0]);
             token.type = TokenType::NONE;
         }
     }
@@ -131,20 +132,20 @@ Token Lexer::parseKeywordOrIdentifier()
 {
     std::string word;
     do {
-        word += std::tolower(m_currentChar);
+        word += std::tolower(m_curChar);
         nextChar();
-    } while (cIsAlphaDigit(m_currentChar));
+    } while (cIsAlphaDigit(m_curChar));
     if (std::ranges::find(KEWORDS_STR, word) != KEWORDS_STR.end()) {
-        return {TokenType::KEYWORD, word};
+        return {TokenType::KEYWORD, word, m_curLine, m_curCol};
     } else {
-        return {TokenType::IDENTIFIER, word};
+        return {TokenType::IDENTIFIER, word, m_curLine, m_curCol};
     }
 }
 
 Token Lexer::parseUnknownSymbol()
 {
-    YERROR("[Ln{}, Col{}] Unknown symbol: {}", m_line, m_column, m_currentChar);
-    Token token{TokenType::NONE, std::string(1, m_currentChar)};
+    YERROR("[L{},C{}] Unknown symbol: {}", m_curLine, m_curCol, m_curChar);
+    Token token{TokenType::NONE, std::string(1, m_curChar), m_curLine, m_curCol};
     nextChar();
     return token;
 }

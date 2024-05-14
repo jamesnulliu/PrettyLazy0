@@ -1,6 +1,5 @@
 #pragma once
 #include <exception>
-#include <iostream>
 #include <string>
 
 namespace plazy
@@ -24,7 +23,6 @@ public:
         m_msg = "Cannot read file: " + fileName;
     }
 
-private:
     virtual const char* what() const noexcept override
     {
         return m_msg.c_str();
@@ -39,14 +37,13 @@ public:
         m_msg = "Unknown word: " + word;
     }
 
-private:
     virtual const char* what() const noexcept override
     {
         return m_msg.c_str();
     }
 };
 
-class InvalidIdent: public Exception
+class InvalidIdent : public Exception
 {
 public:
     InvalidIdent(const std::string& ident)
@@ -54,14 +51,13 @@ public:
         m_msg = "Invalid identifier: " + ident;
     }
 
-private:
     virtual const char* what() const noexcept override
     {
         return m_msg.c_str();
     }
 };
 
-class InvalidOperator: public Exception
+class InvalidOperator : public Exception
 {
 public:
     InvalidOperator(const std::string& op)
@@ -69,7 +65,6 @@ public:
         m_msg = "Invalid operator: " + op;
     }
 
-private:
     virtual const char* what() const noexcept override
     {
         return m_msg.c_str();
@@ -84,7 +79,6 @@ public:
         m_msg = "Not implemented: " + msg;
     }
 
-private:
     virtual const char* what() const noexcept override
     {
         return m_msg.c_str();
@@ -99,7 +93,6 @@ public:
         m_msg = name + " already exists: " + value;
     }
 
-private:
     virtual const char* what() const noexcept override
     {
         return m_msg.c_str();
@@ -114,7 +107,48 @@ public:
         m_msg = "Invalid type: " + type;
     }
 
-private:
+    virtual const char* what() const noexcept override
+    {
+        return m_msg.c_str();
+    }
+};
+
+class RuntimeError : public Exception
+{
+public:
+    RuntimeError(const std::string& msg)
+    {
+        m_msg = "Runtime error: " + msg;
+    }
+
+    virtual const char* what() const noexcept override
+    {
+        return m_msg.c_str();
+    }
+};
+
+class SyntaxError : public Exception
+{
+public:
+    SyntaxError(const std::string& msg)
+    {
+        m_msg = "Syntax error: " + msg;
+    }
+
+    virtual const char* what() const noexcept override
+    {
+        return m_msg.c_str();
+    }
+};
+
+class SemanticError : public Exception
+{
+public:
+    SemanticError(const std::string& msg)
+    {
+        m_msg = "Semantic error: " + msg;
+    }
+
     virtual const char* what() const noexcept override
     {
         return m_msg.c_str();

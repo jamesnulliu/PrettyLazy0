@@ -1,29 +1,13 @@
 #pragma once
-#include "plazy/Common/PreDefined.hpp"
 #include <array>
 #include <cstdint>
 #include <fstream>
 #include <string_view>
 
+#include "plazy/Common/PreDefined.hpp"
+
 namespace plazy
 {
-enum class TokenType : uint16_t
-{
-    NONE,
-    KEYWORD,
-    OPERATOR,
-    DELIMITER,
-    IDENTIFIER,
-    NUMBER,
-    ENDOFFILE
-};
-
-struct Token
-{
-    TokenType type;
-    std::string value;
-};
-
 /**
  * @brief PrettyLazy Lexer for PL/0 language
  */
@@ -46,7 +30,7 @@ public:
      */
     bool fileIsOpen() const
     {
-        return m_currentChar != PLAZY_EOF;
+        return m_curChar != PLAZY_EOF;
     }
     /**
      * @brief [Depricated] Determine whether the file is closed.
@@ -105,6 +89,7 @@ public:
     {
         return cIsAlpha(c) || cIsDigit(c);
     }
+
     static std::string getEncodedType(const plazy::Token& token);
 
 private:
@@ -122,8 +107,8 @@ private:
 
 private:
     std::ifstream m_file;
-    char m_currentChar = PLAZY_EOF;
-    size_t m_line = 1;
-    size_t m_column = 0;
+    char m_curChar = PLAZY_EOF;
+    std::uint32_t m_curLine = 1;
+    std::uint32_t m_curCol = 0;
 };
 }  // namespace plazy
