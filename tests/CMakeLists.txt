@@ -35,6 +35,12 @@ endif()
 
 # Set the output path for the plazy examples
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY  ${PLAZY_EXAMPLE_OUTPUT_PATH})
+<<<<<<< HEAD
+=======
+
+# Add the examples executables
+add_executable(LexerExample ${SOURCES} "./Examples/Lexer_main.cpp")
+>>>>>>> main
 
 # Set the output path for the plazy experiments
 string(
